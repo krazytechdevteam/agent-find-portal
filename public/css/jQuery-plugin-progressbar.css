@@ -1,0 +1,96 @@
+
+.position {
+  float: left;
+  margin: 0px 20px;
+}
+
+.circular-progress .progress-bar {
+  position: relative;
+      height: 160px;
+    width: 180px;
+  background: transparent;
+  box-shadow: none;
+  padding-left: 10%
+}
+
+.circular-progress .progress-bar div {
+  position: absolute;
+    height: 125px;
+    width: 125px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 20px -3px #ccc;
+}
+
+.circular-progress .progress-bar div span {
+  position: absolute;
+    font-family: Arial;
+    font-size: 33px;
+    line-height: 109px;
+    height: 120px;
+    width: 120px;
+    left: 2.8px;
+    top: 2.8px;
+    text-align: center;
+    color: #000;
+    border-radius: 50%;
+    background-color: white;
+}
+.circular-progress .progress-bar span.inner-text {
+    position: absolute;
+    color: #000;
+    z-index: 999;
+    top: 46%;
+    line-height: 12px;
+    font-size: 9px;
+    left: 49%;
+    text-transform: uppercase;
+}
+.circular-progress .progress-bar .background { background: none !important; }
+
+.circular-progress .progress-bar .rotate {
+  clip: rect(0 100px 200px 0);
+  background-color: #4b86db;
+}
+
+.circular-progress .progress-bar .left {
+  clip: rect(0 100px 200px 0);
+  opacity: 1;
+  background-color: #b3cef6;
+}
+
+.circular-progress .progress-bar .right {
+  clip: rect(0 100px 200px 0);
+  transform: rotate(180deg);
+  opacity: 0;
+  background-color: #4b86db;
+}
+ @keyframes 
+toggle {  0% {
+ opacity: 0;
+}
+ 100% {
+ opacity: 1;
+}
+}
+
+@media
+    only screen 
+    and (max-width: 768px){
+      .circular-progress .progress-bar{
+        width: 160px;
+        padding-left: 0px;
+      }
+      .position{
+            margin: 0px 0px;
+      }
+      .circular-progress .progress-bar span.inner-text{
+            left: 26%;
+      }
+    }
+    @media
+    only screen 
+    and (max-width: 480px){
+        .circular-progress{
+          margin-top: 50px;
+        }
+    }

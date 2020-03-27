@@ -1,0 +1,710 @@
+/*
+ * abhiramtiyu (custom css for Login and dashboard page)
+ */
+@font-face{
+	font-family: 'Libre Franklin';
+	src:url('font/LibreFranklin-Regular.ttf');
+	src:url('font/LibreFranklin-Regular.ttf') format('truetype');
+}
+@font-face{
+	font-family: 'LibreFranklinLight';
+	src:url('font/LibreFranklin-Light.ttf');
+	src:url('font/LibreFranklin-Light.ttf') format('truetype');
+}
+@font-face{
+	font-family: 'LibreFranklinMedium';
+	src:url('font/LibreFranklin-Medium.ttf');
+	src:url('font/LibreFranklin-Medium.ttf') format('truetype');
+}
+@font-face{
+	font-family: 'LibreFranklinExtraLight';
+	src:url('font/LibreFranklin-ExtraLight.ttf');
+	src:url('font/LibreFranklin-ExtraLight.ttf') format('truetype');
+}
+
+
+body{
+	font-family: 'Libre Franklin', sans-serif;
+}
+h1,h2,h3,h4,h5,h6{
+	font-family: 'LibreFranklinExtraLight', sans-serif;
+	font-weight: 100;
+}
+.m-t-30{margin-top: 30px;}
+.m-b-30{margin-bottom: 30px}
+
+.btn-red{
+	background-color: #e7161b;
+	text-transform: uppercase;
+	padding: 10px 20px;
+	color: #fff;
+	border-radius: 0px;
+	border:1px solid #e7161b;
+}
+.btn-small{padding: 5px 15px;font-size: 12px;font-weight: 100;}
+.btn-red:hover{
+	border:1px solid #fff;
+	color: #fff;
+}
+/*login section css*/
+.login-view{
+	background-image: url(../img/login-background.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	width: 100%;
+    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    bottom: 0;padding-top: 60px;
+}
+.login-header a img{
+	width: 150px;
+}
+.login-body-section h1{
+	font-size: 4em;
+	color: #fff;
+	font-weight: 100;
+	margin-top: 100px;
+	margin-bottom: 40px;
+}
+.login-box-container{
+	background-color: #fff;
+	padding: 50px 60px;
+	color: #282828;
+}
+.login-box-container .field {
+  display: flex;
+  flex-flow: column-reverse;
+  margin-bottom: 1em;
+}
+.login-box-container label,.login-box-container input {
+  transition: all 0.2s;
+  touch-action: manipulation;
+}
+.login-box-container .form-control {
+  font-size: 1em;
+  border: 0;
+  border-bottom: 1px solid #313131;
+  font-family: inherit;
+  -webkit-appearance: none;
+  border-radius: 0;
+  padding: 0;
+  cursor: text;outline: none;
+  box-shadow: none;
+}
+.login-box-container h2{
+font-size: 3em;
+font-weight: 100;
+margin-top: 0px;
+}
+.login-box-container p{
+	font-size: 0.9em;
+}
+.login-box-container input:focus {
+  outline: 0;
+  border-bottom: 1px solid #313131;
+}
+
+.login-box-container label {
+  text-transform: capitalize;
+  letter-spacing: 0.05em;
+  font-size: 0.9em;
+}
+.login-box-container input:placeholder-shown + label {
+  cursor: text;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform-origin: left bottom;
+  font-size: 1em;
+  transform: translate(0, 2.125rem);
+  font-size: 0.8em;
+  font-weight: 400;
+  color: #8a8787;
+}
+.login-box-container ::-webkit-input-placeholder {
+  opacity: 0;
+  transition: inherit;
+}
+.login-box-container input:focus::-webkit-input-placeholder {
+  opacity: 0;
+}
+.login-box-container input:not(:placeholder-shown) + label,
+.login-box-container input:focus + label {
+  transform: translate(0, 0);
+  cursor: pointer;
+  font-size: 0.8em;
+  font-weight: 400;
+
+}
+.login-box-container .checkbox{
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+.login-box-container .checkbox label{
+text-transform: capitalize;
+font-size: 0.9em;
+}
+.login-box-container .checkbox a{
+	color: #8a8787;
+	font-size:0.9em;
+}
+.login-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 30px;
+    color: #fff;
+    font-family: 'Libre Franklin', sans-serif;
+}
+.login-footer ul li{
+	opacity: 0.5;
+    font-weight: 100;
+    font-size: 0.9em;}
+/*end of login section css*/
+
+/*start of Dashboard pages */
+.body-wrapper{padding-bottom: 40px;}
+.dashboard-nav{
+	background-color: #fff;
+	border-bottom: 1px solid #ccc;
+}
+.dashboard-nav .navbar-brand{
+	height:auto;
+	padding: 10px 15px;
+}
+.dashboard-nav>.container-fluid .navbar-brand{
+	margin-left: 0px;
+}
+.dashboard-nav .navbar-brand>img{
+width: 120px;
+}
+.dashboard-nav .navbar-nav>li>a{
+	padding:21px 15px;
+	color: #696969;
+	font-size: 0.9em;
+}
+.dashboard-nav .nav>li>a:focus,
+.dashboard-nav .nav>li>a:hover{
+	color: #e7161b;
+	background: none;
+}
+.dashboard-nav .nav>li.active a{
+	color: #e7161b;
+}
+.searchbox{
+	width: 20%;
+    float: left;
+    position: relative;
+    margin-top: 13px;
+}
+.searchbox input{
+	border: 1px solid #ccc;
+    border-radius: 0px;
+    box-shadow: none;
+    height: 38px;
+    padding-right: 50px;
+}
+.searchbox .form-control:focus{
+	box-shadow: none;border-color: #ccc;
+}
+.search-icon{
+	position: absolute;
+    top: 0px;
+    right: 0px;
+    background: #e7161b;
+    border: 0px;
+    color: #fff;
+    padding: 9px 14px;
+}
+.dashboard-header{
+	background-image: url(../img/header-title.jpg);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin-top: 62px;
+    padding: 22px 0px;
+}
+.dashboard-header h1{
+	font-weight: 100;
+	font-size: 3em;
+	color: #fff;
+	font-family: "LibreFranklinExtraLight";
+}
+
+.table thead tr th{
+	color: #b11a1e;
+	text-transform: uppercase;
+	font-size: 1em;
+	font-weight: 200;
+	font-size: 0.9em;
+	font-family: "LibreFranklinmedium";
+	border-bottom:0px;
+}
+
+.table tbody tr td{
+	font-size: 0.9em;
+	font-family: "LibreFranklinmedium";
+	border:none;
+	padding: 18px 10px;
+}
+.table tbody tr td:nth-child(1),
+.table tbody tr td:nth-child(2){
+	font-weight: bold;
+}
+.filter-btn a{
+	font-family: "LibreFranklinmedium";
+	color: #e7161b;
+	font-size: 1em;font-weight: 200;
+	background-image: url("../img/filter-icon.png");
+	background-repeat: no-repeat;
+	background-position: right;
+    padding: 10px 30px 10px 0px;
+    background-size: 20px;
+
+}
+.filter-btn a:hover{
+text-decoration: none;
+}
+.table-paginate .list-inline{
+	    margin-left: 30px;
+}
+.table-paginate .list-inline li{
+	    line-height: 31px;
+}
+.profile-image{
+	width: 35px;
+    position: absolute;
+    top: 12px;
+    right: 0px;
+    border-radius: 50%;
+}
+.dashboard-nav .navbar-nav>li>a{
+padding-right: 43px;
+}
+
+/* dashboard pages start*/
+.wrapper-mainhead{font-weight: 100;color: #282828;font-size: 3em;}
+.notification-list h3{
+    font-weight: 100;
+    font-size: 1.5em;
+}
+.each-notification{
+	vertical-align: middle;
+    min-height: 60px;
+}
+.all-listnotification{
+	    max-height: 420px;
+}
+.notification-image img{
+    width: 50px;
+}
+.notification-user{
+	font-weight: bold;
+}
+.notification-time{
+    color: #898989;
+    font-size: 85%;
+    font-weight: 100;
+    padding-left: 15px;
+    }
+.comment-for{
+	font-weight: bold;
+}
+.notification-list li {
+    border-top: 1px solid #ccc;
+    padding: 10px 0px;
+}
+.notification-list li:last-child{
+	border-bottom: 1px solid #ccc;
+}
+.notification-status {
+    vertical-align: middle;
+    min-height: 60px;
+    padding-top: 20px;
+}
+.notification-status span{
+	background-color: #e7161b;
+	padding:0 8px;
+	 border-radius: 50%;
+	}
+.team-list .thumbnail{
+	padding: 20px;
+	border-radius: 0px;
+    box-shadow: -2px 2px 39px #ccc;
+    margin: 0px 5px;
+}
+.team-list .thumbnail img{
+	width: 70%;margin: 0 auto;
+	/*min-height: 130px;*/
+}
+.team-list .thumbnail img{
+	width: 70%;
+    margin: 0 auto;
+    min-height: 130px;
+}
+.team-list h4{
+	font-size: 16px;
+	font-weight: 400;
+}
+.team-list .caption h4{
+margin-bottom: 0px;
+font-size: 18px;
+
+}
+.team-list .caption p{
+	margin-bottom: 3px;
+	font-size: 11px;
+}
+.detail-section .thumbnail{
+	 padding: 14px 40px;
+}
+.mini-section{
+font-size:  0.8em;
+}
+.detail-section h3{
+	font-weight: 300;margin: 0px;
+}
+.client-lable {
+    font-size: 0.8em;
+    font-weight: 500;
+    margin-bottom: 0px;
+}
+.clielnt-value {
+    font-size: 1em;
+    font-weight: bold;
+}
+.min-height222{min-height: 222px;}
+.min-height137{    min-height: 156px;}
+.file-name {
+    font-size: 0.8em;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.file-name span {
+    font-size: 1.4em;
+    padding-right: 5px;
+}
+.file-name span:first-child{
+	color: #e7161b
+}
+.attachment-details {
+    font-size: 0.7em;
+}
+.attach-filelist{
+	width: 80%;
+    max-height: 100px;
+    overflow-y: scroll;
+}
+.attach-filelist:hover{
+	
+}
+.theme-red{
+	color: #e7161b;
+}
+.clielnt-value a{
+	color: #0977f3;
+	text-decoration: underline;}
+.interestedin h5{
+	margin-bottom: 5px;
+}
+.location-name {
+    font-size: 0.8em;
+}
+.interestedin .glyphicon{font-size: 0.9em;}
+.uploadfile {
+    position: absolute;
+    top: 20px;
+    right: 43px;
+    width: 50px;
+    height: 53px;
+    background-image: url(../images/upload.png);
+    overflow: hidden;
+}
+.location-list p {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+.location-list li{
+	    margin-bottom: 20px;
+}
+.location-list span{
+	    font-size: 0.8em;
+}
+.uploadfile input[type="file"] {
+    opacity: 0;
+    height: 60px;
+}
+.panel-default {
+    border-color: #ddd;
+    border: 0;
+    border-radius: 0px;
+}
+.chatboxapp .panel-default>.panel-heading {
+    color: #fff;
+    background-color: #e7161b;
+    border-color: #ddd;
+    font-size: 1.3em;
+    font-weight: bold;
+    border-radius: 0px;
+}
+.chatboxapp .panel{
+	border-radius: 0px;
+	box-shadow: none;
+}
+
+.panel-body {
+    background: #dadada;
+    min-height: 340px;
+}
+/*chatbox*/
+.incoming_msg {
+    margin-bottom: 10px;
+}
+.incoming_msg_img {
+    display: inline-block;
+    width: 6%;
+}
+.container{max-width:1170px; margin:auto;}
+img{ max-width:100%;}
+
+
+.top_spac{ margin: 20px 0 0;}
+
+
+
+.srch_bar {
+  display: inline-block;
+  text-align: right;
+  width: 60%; padding:
+}
+
+
+.recent_heading h4 {
+  color: #05728f;
+  font-size: 21px;
+  margin: auto;
+}
+
+
+.chat_ib h5{ font-size:15px; color:#464646; margin:0 0 8px 0;}
+.chat_ib h5 span{ font-size:13px; float:right;}
+.chat_ib p{ font-size:14px; color:#989898; margin:auto}
+.chat_img {
+  float: left;
+  width: 11%;
+}
+.chat_ib {
+  float: left;
+  padding: 0 0 0 15px;
+  width: 88%;
+}
+
+.chat_people{ overflow:hidden; clear:both;}
+.chat_list {
+  border-bottom: 1px solid #c4c4c4;
+  margin: 0;
+  padding: 18px 16px 10px;
+}
+.inbox_chat { height: 550px; overflow-y: scroll;}
+
+.active_chat{ background:#ebebeb;}
+
+.incoming_msg_img {
+  display: inline-block;
+  width: 6%;
+}
+.received_msg {
+    display: inline-block;
+    padding: 0 0 0 10px;
+    vertical-align: bottom;
+    margin-bottom: -22px;
+    width: 92%;
+ }
+ .received_withd_msg p {
+      background: #ffffff none repeat scroll 0 0;
+    border-radius: 9px 9px 9px 0px;
+    color: #646464;
+    font-size: 12px;
+    margin: 0;
+    padding: 5px 10px 5px 12px;
+    width: 100%;
+}
+.time_date {
+    color: #747474;
+    display: block;
+    font-size: 9px;
+    margin: 8px 0 0;
+    float: right;
+}
+.received_withd_msg { width: 57%;}
+.mesgs {
+    float: left;
+    padding: 0px 0px 0 15px;
+    width: 100%;
+}
+.msg_history{
+	max-height: 400px;
+	overflow-y: scroll;
+}
+.outgoing_msg_img{
+	display: inline-block;
+    width: 6%;
+    position: absolute;
+    right: 40px;
+}
+
+ .sent_msg p {
+  background: #e7161b none repeat scroll 0 0;
+  border-radius: 9px 9px 0px 9px;
+  font-size: 12px;
+  margin: 0; color:#fff;
+  padding: 5px 10px 5px 12px;
+  width:100%;
+}
+.outgoing_msg{ overflow:hidden; margin:26px 0 26px;}
+.sent_msg {
+    float: right;
+    width: 46%;
+    margin-right: 40px;
+
+}
+.input_msg_write input {
+ background: #fff;
+    border: medium none;
+    color: #4c4c4c;
+        font-size: 11px;
+    min-height: 35px;
+    padding: 10px;
+    width: 80%;
+    border-radius: 20px;
+}
+
+.type_msg {position: relative;    margin-top: 37px;}
+.msg_send_btn {
+     background: #e7161b none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 11px;
+    height: 34px;
+    position: absolute;
+    right: 0;
+    /* top: 11px; */
+    width: 78px;
+}
+.messaging { padding: 0 0 50px 0;}
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 5px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: red; 
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #b30000; 
+}
+/*end of chat  box*/
+@media
+	  only screen 
+    and (max-width: 760px){
+
+		/* Force table to not be like tables anymore */
+		table, thead, tbody, th, td, tr {
+			display: block;
+		}
+
+		/* Hide table headers (but not display: none;, for accessibility) */
+		.dashboard-table thead tr {
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+
+   .dashboard-table tr {
+      margin: 0 0 1rem 0;
+    }
+      
+   .dashboard-table tr:nth-child(odd) {
+      background: #ccc;
+    }
+    
+		.dashboard-table td {
+			/* Behave  like a "row" */
+			border: none;
+			border-bottom: 1px solid #eee;
+			position: relative;
+			padding-left: 50% !important;
+    		padding-top: 0px !important;
+		}
+
+	.dashboard-table td:before {
+			/* Now like a table header */
+			position: absolute;
+			/* Top/left values mimic padding */
+			top: 0;
+			left: 6px;
+			width: 45%;
+			padding-right: 10px;
+			white-space: nowrap;
+		}
+
+		/*
+		Label the data
+    You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+		*/
+		.dashboard-table td:nth-of-type(1):before { content: "first"; }
+		.dashboard-table td:nth-of-type(2):before { content: "Last"; }
+		.dashboard-table td:nth-of-type(3):before { content: "stage"; }
+		.dashboard-table td:nth-of-type(4):before { content: "loan officer"; }
+		.dashboard-table td:nth-of-type(5):before { content: "realty advisor"; }
+		.dashboard-table td:nth-of-type(6):before { content: "agent"; }
+
+	}
+	@media (max-width: 768px){	
+		.dashboard-nav .navbar-nav>li>a {
+   		 padding: 6px 10px;
+   		 padding: 21px 9px;
+		}
+		.dashboard-header h1{
+			font-size: 2em;
+		}
+		.dashboard-header{
+			    margin-top: 62px;
+    			padding: 1px 0px;
+		}
+		
+	}
+	@media (max-width: 480px){
+		.dashboard-nav .navbar-nav>li>a {
+   		 padding: 6px 10px;
+		}
+	.searchbox{
+			width: 100%;
+			margin-bottom: 10px;
+		}
+		.navbar-toggle .icon-bar{
+			background: #e7161b;
+		}
+		.navbar-mobile{
+			width: 100%;
+		}
+	}
+	@media(min-width: 1024px){
+		.dashboard-header{
+			min-height: 125px;
+		}
+	}
