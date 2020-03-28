@@ -29,7 +29,11 @@
     <body>
         
         @include('sweet::alert')
-        @include('frontend.includes.header')
+
+        @if(session()->has('AUTH_USER'))
+            @include('frontend.includes.header')
+        @endif
+
         @yield('content')
 
 
