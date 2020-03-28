@@ -22,6 +22,7 @@ Route::post('contact/send', [ContactController::class, 'send'])->name('contact.s
 Route::get('agent-list', [AgentController::class, 'agentList'])->name('agentList');
 Route::post('agent-login', [AgentController::class, 'agentLogin'])->name('agentLogin');
 Route::get('agent-logout', [AgentController::class, 'agentLogOut'])->name('agentLogOut');
+Route::get('user-profile', [AgentController::class, 'userProfile'])->name('userProfile');
 
 Route::get('login', [AgentController::class, 'showLoginForm'])->name('showLoginForm');
 Route::group(['middleware' => ['chklogin']], function () {

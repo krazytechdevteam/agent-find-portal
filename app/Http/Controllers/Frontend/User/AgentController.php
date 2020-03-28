@@ -114,4 +114,27 @@ class AgentController extends Controller
         return view('frontend.user.agent-list', compact(['data']));    
     }
 
+    public function userProfile(Request $request) {
+ 
+    	try {
+
+           	$targetURL     = config('app.agentFindApiURL') . 'services/apexrest/UserInfo/'.$request->session()->get('AUTH_USER')['ENROLLMENT_ID'];
+
+            $client  = new \GuzzleHttp\Client();
+			$respone = $client->get($targetURL);
+
+            $data    = json_decode($respone->getBody());
+           	$status  = 'success';
+        
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+           
+            $response = $e->getResponse();
+            $result   = json_decode($response->getBody());
+            $status   = 'error';
+            $data     = 'Something went wrong.Please try agin !!!';
+        }
+
+        return view('frontend.user.user-profile', compact(['data'])); 
+    }
+
 }
