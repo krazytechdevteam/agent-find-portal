@@ -7,57 +7,6 @@
 @section('content')
 
 
-<style type="text/css">
-  
-  .bold-text {
-      margin: 0px;
-      font-size: 20px;
-      color: #e7161b;
-      font-weight: 500;
-  }
-  .light-text {
-
-    margin: 0px;
-    font-size: 12px;
-    font-weight: 500;
-    color: #9e9e9e;
-  }
-
-  .table tbody tr td {
-    
-    font-size: 1em;
-    border: none;
-    padding: 18px 10px;
-  }
-  
-  .table thead tr, .table tbody tr {
-    border-bottom: 1px solid #ccc !important
-  }
-  .btn-default {
-    background-color: #fff;
-    color: #4cae4c;
-    border-color: #4cae4c;
-  }
-
-  .btn {
-    border-width: 2px;
-  }
-  .table thead tr th {
-    /* color: #b11a1e; */
-    /* text-transform: uppercase; */
-    font-size: 1em;
-    font-weight: 500;
-    font-size: 15px;
-    /* font-family: "proxima nova semibold"; */
-    border-bottom: -1px;
-    color: #333;
-    padding: 11px 7px;
-  }
-  label {
-    font-weight: 500 !important
-  }
-
-</style>
      <div class="dashboard-header m-b-30">
       <div class="container">
         <div class="row">
