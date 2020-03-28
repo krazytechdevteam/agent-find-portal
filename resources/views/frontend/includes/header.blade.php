@@ -21,7 +21,7 @@
           <ul class="nav navbar-nav">
             <li><a href="#">1-800-716-0115</a></li>
             <li class="active"><a href="#">Dashboard</a></li>
-            <li><a href="<?php echo url('/') . '/agent-list'; ?>">Deals</a></li>
+            <li><a href="<?php echo url('/') . '/deal-list'; ?>">Deals</a></li>
             <li><a href="#report">Report</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Session::get('AUTH_USER')['NAME'] }} <span class="caret"></span>

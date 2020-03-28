@@ -81,7 +81,7 @@ class AgentController extends Controller
 
     }
 
-    public function agentList(Request $request) {
+    public function dealList(Request $request) {
         
         try {
 
@@ -111,7 +111,7 @@ class AgentController extends Controller
             $data     = 'Something went wrong.Please try agin !!!';
         }
 
-        return view('frontend.user.agent-list', compact(['data']));    
+        return view('frontend.user.deal-list', compact(['data']));    
     }
 
     public function userProfile(Request $request) {

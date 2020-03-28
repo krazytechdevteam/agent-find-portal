@@ -29,7 +29,8 @@ Route::group(['middleware' => ['chklogin']], function () {
     
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('user-profile', [AgentController::class, 'userProfile'])->name('userProfile');
-    Route::get('agent-list', [AgentController::class, 'agentList'])->name('agentList');
+    Route::get('deal-list', [AgentController::class, 'dealList'])->name('dealList');
+    Route::get('deal-details', [AgentController::class, 'agentList'])->name('agentList');
 
 });
 /*
