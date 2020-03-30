@@ -1,49 +1,50 @@
 @extends('frontend.layouts.app')
 
-@section('title', app_name() . ' | ' . __('navs.frontend.dashboard') )
+@section('title', app_name() . ' | ' . __('Deal Details') )
         
 @section('content')
 
 <div id="wrapper">
     
+
     <div class="container-fluid client-list" style="padding-bottom: 30px;">
         <div class="row">
             <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                  <div class="media">
-                    <a class="pull-left" href="#"><img src="/AgentFind/servlet/servlet.ImageServer?oid=00D0U00000096EY&amp;id=0150U0000000kEpQAI" alt="" class="media-object">
+                    <a class="pull-left" href="#"><img src="<?php echo $data->LO_IMAGE; ?>" alt="" class="media-object">
                     </a>
                     <div class="media-body">
-                      <h4 class="media-heading username" ng-click="userProfile('0033D00000SadnMQAR');">Scott Edwards</h4>
-                      <p class="star-color"><span class="stars">2.5<span></span></span></p>
-                      <p class="by-author"></p>
-                      <p>(913) 213-4544</p>
-                      <p><a href="mailto:sedwards@mortgagecompany.com">sedwards@mortgagecompany.com</a></p>
+                      <h4 class="media-heading username"><a href="<?php echo url('/') . '/user-profile/' . $data->LO_ID; ?>"><?php echo $data->LO_NAME; ?></a></h4>
+                      <p class="star-color"><span class="stars"><?php echo $data->LO_RATING; ?><span></span></span></p>
+                      <p class="by-author"><?php echo $data->LO_OFFICE_NAME; ?></p>
+                      <p><?php echo $data->LO_PHONE; ?></p>
+                      <p><a href="mailto:<?php echo $data->LO_EMAIL; ?>"><?php echo $data->LO_EMAIL; ?></a></p>
                     </div>
                   </div>
             </div>
             <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                 <div class="media">
-                    <a class="pull-left" href="#"><img src="/AgentFind/servlet/servlet.ImageServer?oid=00D0U00000096EY&amp;id=0150U0000000kEuQAI" alt="" class="media-object">
+                    <a class="pull-left" href="#"><img src="<?php echo $data->BROKER_IMAGE; ?>" alt="" class="media-object">
                     </a>
                     <div class="media-body">
-                      <h4 class="media-heading username" ng-click="userProfile('0033D00000T8Hp9QAF');">Natalie Rodriguez</h4>
-                      <p class="star-color"><span class="stars">2<span></span></span></p>
-                      <p class="by-author"></p>
-                      <p>(800) 399-8719</p>
-                      <p><a href="mailto:natalie@agentfind.com">natalie@agentfind.com</a></p>
+                      <h4 class="media-heading username"><a href="<?php echo url('/') . '/user-profile/' . $data->BROKER_ID; ?>"><?php echo $data->BROKER_NAME; ?></a></h4>
+                      <p class="star-color"><span class="stars"><?php echo $data->BROKER_RATING; ?><span></span></span></p>
+                      <p class="by-author"><?php echo $data->BROKER_OFFICE_NAME; ?></p>
+                      <p><?php echo $data->BROKER_PHONE; ?></p>
+                      <p><a href="mailto:<?php echo $data->BROKER_EMAIL; ?>"><?php echo $data->BROKER_EMAIL; ?></a></p>
                     </div>
                   </div>
             </div>
             <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                 <div class="media">
-                    <a class="pull-left" href="#"><img src="/AgentFind/servlet/servlet.ImageServer?oid=00D0U00000096EY&amp;id=0150U0000000jyrQAA" alt="" class="media-object">
+                    <a class="pull-left" href="#"><img src="<?php echo $data->AGENT_IMAGE; ?>" alt="" class="media-object">
                     </a>
                     <div class="media-body">
-                      <h4 class="media-heading username" ng-click="userProfile('0033D00000SadnRQAR');">Casi Clinton</h4>
-                      <p class="star-color"><span class="stars">4<span></span></span></p>
-                      <p class="by-author">Keller Williams</p>
-                      <p>(404) 988-0799</p>
-                      <p><a href="mailto:casi@kw.com">casi@kw.com</a></p>
+                      <h4 class="media-heading username"><a href="<?php echo url('/') . '/user-profile/' . $data->AGENT_ID; ?>"><?php echo $data->AGENT_NAME; ?></a></h4>
+                      <p class="star-color"><span class="stars"><?php echo $data->AGENT_RATING; ?><span></span></span></p>
+                      <p class="by-author"><?php echo $data->AGENT_OFFICE_NAME; ?></p>
+                      <p><?php echo $data->AGENT_PHONE; ?></p>
+                      <p><a href="<?php echo $data->AGENT_EMAIL; ?>"><?php echo $data->AGENT_EMAIL; ?></a></p>
                     </div>
                   </div>
             </div>
@@ -54,9 +55,9 @@
     <div id="sidebar-wrapper">
         <nav id="spy">
             <div class="profile-details text-center">
-                <h3>Nicole Buyer 113</h3>
-                <p>(678) 457-9533</p>
-                <p><a href="mailto:nicolebuyer@agentfind.com">nicolebuyer@agentfind.com</a></p>
+                <h3><?php echo $data->DEAL_NAME; ?></h3>
+                <p><?php echo $data->DEAL_PHONE; ?></p>
+                <p><a href="mailto:<?php echo $data->DEAL_EMAIL; ?>"><?php echo $data->DEAL_EMAIL; ?></a></p>
             </div>
             <ul class="sidebar-nav nav">
                 <li>
@@ -108,17 +109,34 @@
                                 <div class="panel-heading">Profile</div>
                                 <div class="panel-body">
                                     <h4>Loan Basis</h4>
-                                    <ul class="list-unstyled profile-list">
-                                        <li>Pre-approval Amount: <span class="text-value">$10,000.00
-                                            </span></li>
-                                        <li>Loan Type: <span class="text-value">FHA;USDA</span></li>
-                                        <li>First Time Home Buyer: <span class="text-value">Yes</span></li>
-                                        
-                                        <li>Time Frame for Purchasing: <span class="text-value">Immediate</span></li>
-                                        <li>Location for Home Search: <span class="text-value">Atlanta, Florida</span></li>
-                                        <li>Property Type: <span class="text-value">SFR</span></li>
-                                        <li>Property Details: <span class="text-value"></span></li>
-                                    </ul>
+                                    <?php
+									$profile = json_decode(json_encode($data->PROFILE), true);
+									if(count($profile)>0) {
+									?>
+										
+										<ul class="list-unstyled profile-list">
+											<li>Pre-approval Amount: <span class="text-value">$<?php echo $data->PROFILE->PREAPPROVAL_AMOUNT ; ?>
+												</span></li>
+											<li>Loan Type: <span class="text-value"><?php echo $data->PROFILE->LOAN_TYPE ; ?></span></li>
+											<li>First Time Home Buyer: <span class="text-value"><?php echo $data->PROFILE->FIRST_TIME_HOME_BUYER ; ?></span></li>
+											
+											<li>Time Frame for Purchasing: <span class="text-value"><?php echo $data->PROFILE->TIME_FRAME_FOR_PURCHASING ; ?></span></li>
+											<li>Location for Home Search: <span class="text-value"><?php echo $data->PROFILE->LOCATION_FOR_HOME_SEARCH ; ?></span></li>
+											<li>Property Type: <span class="text-value"><?php echo $data->PROFILE->PROPERTY_TYPE ; ?></span></li>
+											<li>Property Details: <span class="text-value"><?php echo $data->PROFILE->PROPERTY_DETAILS ; ?></span></li>
+										</ul>
+									
+										
+									<?php	
+									} else {
+									?>
+										<span style="padding: 200px;font-size: 15px;font-weight: bold;color: #0e52fd;">No Records Found</span>
+									<?php	
+									}
+									?>
+									
+									
+									
                                 </div>
                             </div>
                         </div>
@@ -127,20 +145,34 @@
                                 <div class="col-xs-12 col-md-12 col-lg-12">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Activity</div>
-                                        <div class="panel-body">
-                                            <div class="col-md-5 padding-none">
-                                                <span class="text-light-gray">12/10/2018</span>
-                                                <span class="block-text">Date Lead Received </span>
-                                            </div>
-                                            <div class="col-md-4 padding-none">
-                                                <span class="text-light-gray">12/11/2018</span>
-                                                <span class="block-text">Last Offer Date </span>
-                                            </div>
-                                            <div class="col-md-3 padding-none">
-                                                <span class="text-light-gray">475</span>
-                                                <span class="block-text">Days Looking</span>
-                                            </div>
-                                        </div>
+										
+										<?php
+										$activity = json_decode(json_encode($data->ACTIVITY), true);
+										if(count($activity)>0) {
+										?>
+									
+											<div class="panel-body">
+												<div class="col-md-5 padding-none">
+													<span class="text-light-gray"><?php echo $data->ACTIVITY->DATE_LEAD_RECEIVED ; ?></span>
+													<span class="block-text">Date Lead Received </span>
+												</div>
+												<div class="col-md-4 padding-none">
+													<span class="text-light-gray"><?php echo $data->ACTIVITY->LAST_OFFER_DATE ; ?></span>
+													<span class="block-text">Last Offer Date </span>
+												</div>
+												<div class="col-md-3 padding-none">
+													<span class="text-light-gray"><?php echo $data->ACTIVITY->DAYS_LOOKING ; ?></span>
+													<span class="block-text">Days Looking</span>
+												</div>
+											</div>
+										<?php	
+										} else {
+										?>
+											<span style="padding: 200px;font-size: 15px;font-weight: bold;color: #0e52fd;">No Records Found</span>
+										<?php	
+										}
+										?>	
+										
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-md-12 col-lg-12">
@@ -148,9 +180,7 @@
                                         <div class="panel-heading">Notes</div>
                                         <div class="panel-body">
                                             <div class="min-height222 note-body">
-                                                <p><span style="white-space:pre-wrap;">8/30 Buyer is still actively looking - just placed an offer on a home - waiting to hear back.
-9/1  Buyer will be in town next week to begin home search
-8/20 Made contact with buyer setting up with agent</span></p>
+                                                <p><span style="white-space:pre-wrap;"><?php echo $data->NOTES; ?></span></p>
                                             </div>
                                         </div>
                                     </div>
@@ -166,14 +196,28 @@
                                 <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Agent Request Details</div>
-                                        <div class="panel-body">
-                                            <ul class="list-unstyled profile-list text-capitalize">
-                                                <li>Data agent requested: <span class="text-value">12/10/2018</span></li>
-                                                <li>Data paired with agent: <span class="text-value">12/12/2018</span></li>
-                                                <li>Property of interest: <span class="text-value">Interested</span></li>
-                                                <li>Borrower noter: <span class="text-value">None Currently</span></li>
-                                            </ul>
-                                        </div>
+                                        
+										<?php
+										$AGENT_REQUEST_DETAILS = json_decode(json_encode($data->AGENT_REQUEST_DETAILS), true);
+										if(count($AGENT_REQUEST_DETAILS)>0) {
+										?>
+									
+											<div class="panel-body">
+												<ul class="list-unstyled profile-list text-capitalize">
+													<li>Data agent requested: <span class="text-value"><?php echo $data->AGENT_REQUEST_DETAILS->DATA_AGENT_REQUESTED; ?></span></li>
+													<li>Data paired with agent: <span class="text-value"><?php echo $data->AGENT_REQUEST_DETAILS->DATA_PAIRED_WITH_AGENT; ?></span></li>
+													<li>Property of interest: <span class="text-value"><?php echo $data->AGENT_REQUEST_DETAILS->PROPERTY_OF_INTEREST; ?></span></li>
+													<li>Borrower noter: <span class="text-value"><?php echo $data->AGENT_REQUEST_DETAILS->BORROWER_NOTE; ?></span></li>
+												</ul>
+											</div>
+										<?php	
+										} else {
+										?>
+											<span style="padding: 200px;font-size: 15px;font-weight: bold;color: #0e52fd;">No Records Found</span>
+										<?php	
+										}
+										?>	
+										
                                     </div>
                                 </div>
                                 <div id="files-sec" style="line-height: 0px;">&nbsp;</div>

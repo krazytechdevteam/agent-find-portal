@@ -44,11 +44,16 @@ class DealController extends Controller
         return view('frontend.user.deal-list', compact(['data']));    
     }
 
-    public function dealDetail(Request $request) {
+    public function dealDetail(Request $request, $dealId) {
         
         try {
 
-            $data = array();
+            $targetURL = config('app.agentFindApiURL') . 'services/apexrest/LODealDetail/'.$dealId;
+
+            $client    = new \GuzzleHttp\Client();
+            $respone   = $client->get($targetURL);
+            $data      = json_decode($respone->getBody());
+
         
         } catch (\GuzzleHttp\Exception\ClientException $e) {
            

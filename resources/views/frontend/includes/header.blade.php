@@ -26,7 +26,9 @@
               {{ Session::get('AUTH_USER')['NAME'] }}
               <img src="{{ Session::get('AUTH_USER')['PROFILE_IMG'] }}" alt="" class="profile-image" /></a>
               <ul class="dropdown-menu">
-                <li><a href="<?php echo url('/') . '/user-profile'; ?>">Profile</a></li>
+                <li>
+                    <a href="<?php echo url('/') . '/user-profile/';?>{{ Session::get('AUTH_USER')['ENROLLMENT_ID'] }}">Profile</a>
+                </li>
                 <li><a href="<?php echo url('/') . '/agent-logout'; ?>">Logout</a></li>
             </ul>
             </li>
