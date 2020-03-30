@@ -14,7 +14,7 @@
                     </a>
                     <div class="media-body">
                       <h4 class="media-heading username" ng-click="userProfile('0033D00000SadnMQAR');">Scott Edwards</h4>
-                      <p class="star-color"><span class="stars"><span></span></span></p>
+                      <p class="star-color"><span class="stars">2.5<span></span></span></p>
                       <p class="by-author"></p>
                       <p>(913) 213-4544</p>
                       <p><a href="mailto:sedwards@mortgagecompany.com">sedwards@mortgagecompany.com</a></p>
@@ -27,7 +27,7 @@
                     </a>
                     <div class="media-body">
                       <h4 class="media-heading username" ng-click="userProfile('0033D00000T8Hp9QAF');">Natalie Rodriguez</h4>
-                      <p class="star-color"><span class="stars"><span></span></span></p>
+                      <p class="star-color"><span class="stars">2<span></span></span></p>
                       <p class="by-author"></p>
                       <p>(800) 399-8719</p>
                       <p><a href="mailto:natalie@agentfind.com">natalie@agentfind.com</a></p>
@@ -40,7 +40,7 @@
                     </a>
                     <div class="media-body">
                       <h4 class="media-heading username" ng-click="userProfile('0033D00000SadnRQAR');">Casi Clinton</h4>
-                      <p class="star-color"><span class="stars"><span></span></span></p>
+                      <p class="star-color"><span class="stars">4<span></span></span></p>
                       <p class="by-author">Keller Williams</p>
                       <p>(404) 988-0799</p>
                       <p><a href="mailto:casi@kw.com">casi@kw.com</a></p>

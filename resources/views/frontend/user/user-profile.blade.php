@@ -21,7 +21,7 @@
                     </h1>
                     <p class="agent-review">
                         <span style="float: left;"><?php //TODO echo Total_Average_Rating__c; ?></span>
-                        <span style="float: left; margin-top: 10px; margin-left: 10px; margin-right: 10px;" class="stars"><?php //TODO echo Total_Average_Rating__c; ?></span>
+                        <span style="float: left; margin-top: 10px; margin-left: 10px; margin-right: 10px;" class="stars">2.3<?php //TODO echo Total_Average_Rating__c; ?></span>
 
                         <?php
                         //TODO if($Total_Reviews__c > 0) {
@@ -85,7 +85,7 @@ if(isset($data->USER_FEEDBACK) && count($data->USER_FEEDBACK)>0 ) {
 				</a>
 				<div class="media-body">
 					<p class="star-color">
-						<span class="stars"><span style="width: 48px;"></span></span>
+						<span class="stars">2<span style="width: 48px;"></span></span>
 					</p>
 					<p class="by-author"><?php echo $r->RATING; ?></p> 
 					<div class="row">
@@ -106,13 +106,15 @@ if(isset($data->USER_FEEDBACK) && count($data->USER_FEEDBACK)>0 ) {
 </style>
 
 <script type="text/javascript">
-$.fn.stars = function() {
-	return $(this).each(function() {
-		$(this).html($('<span />').width(Math.max(0, (Math.min(5, parseFloat($(this).html())))) * 16));
-	});
-}
+window.addEventListener("load", function(){
+	$.fn.stars = function() {
+		return $(this).each(function() {
+			$(this).html($('<span />').width(Math.max(0, (Math.min(5, parseFloat($(this).html())))) * 16));
+		});
+	}
 
-setTimeout(function(){ $('span.stars').stars(); }, 1000);
+	$('span.stars').stars();
+});
 </script>
 
 @endsection
