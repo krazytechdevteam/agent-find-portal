@@ -1,38 +1,37 @@
-<nav class="navbar navbar-fixed-top dashboard-nav">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top dashboard-nav" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><img src="{{asset('public/img/logo-dashboard.png')}}" alt="dashboard-logo"></a>
-        </div>
-        <div class="searchbox">
-           <div class="search-container">
-            <form>
-              <input type="text" class="form-control" placeholder="Search.." name="search">
-              <button type="submit" class="search-icon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-            </form>
+          <div>
+            <a class="navbar-brand" href="<?php echo url('/') . '/dashboard'; ?>">
+              <img alt="dashboard-logo" src="{{asset('public/img/logo-dashboard.png')}}" />
+            </a>
           </div>
         </div>
-        <div id="navbar" class="navbar-collapse navbar-mobile collapse pull-right" aria-expanded="false" style="height: 1px;">
+        <div class="collapse navbar-collapse" id="navbar">
           <ul class="nav navbar-nav">
-            <li><a href="#">1-800-716-0115</a></li>
-            <li class="active"><a href="#">Dashboard</a></li>
+            <li><a href="<?php echo url('/') . '/dashboard'; ?>">Dashboard</a></li>
             <li><a href="<?php echo url('/') . '/deal-list'; ?>">Deals</a></li>
-            <li><a href="#report">Report</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Session::get('AUTH_USER')['NAME'] }} <span class="caret"></span>
-
-              <img src="{{ Session::get('AUTH_USER')['PROFILE_IMG'] }}" alt="profileimage" class="profile-image"></a>
+            <li><a href="<?php echo url('/') . '/request-agent'; ?>">Request Agent</a></li>
+          </ul>
+          <ul class="profile-dropdown pull-right">
+            <li class="dropdown list-unstyled">
+             <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
+              {{ Session::get('AUTH_USER')['NAME'] }}
+              <img src="{{ Session::get('AUTH_USER')['PROFILE_IMG'] }}" alt="" class="profile-image" /></a>
               <ul class="dropdown-menu">
                 <li><a href="<?php echo url('/') . '/user-profile'; ?>">Profile</a></li>
                 <li><a href="<?php echo url('/') . '/agent-logout'; ?>">Logout</a></li>
-              </ul>
+            </ul>
             </li>
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
+
       </div>
     </nav>

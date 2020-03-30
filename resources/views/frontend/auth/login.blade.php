@@ -1,4 +1,4 @@
-@extends('frontend.layouts.app')
+@extends('frontend.layouts.login')
 
 @section('title', app_name() . ' | ' . __('labels.frontend.auth.login_box_title'))
 
@@ -66,8 +66,8 @@
                 </div>
                 <div class="col-md-6 text-right">
                 <ul class="list-inline list-unstyled">
-                    <li>Tel. 800.716.0115 9</li>
-                    <li>info@agentfind.com</li>
+                    <li>Tel. <a href="tel:800.716.0115 9" class="footer_link">800.716.0115 9</a></li>
+                    <li><a href="mailto:info@agentfind.com"  class="footer_link">info@agentfind.com</a></li>
                 </ul>
                                               
                 </div>

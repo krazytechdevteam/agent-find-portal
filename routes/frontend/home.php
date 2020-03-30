@@ -6,7 +6,8 @@ use App\Http\Controllers\Frontend\User\AccountController;
 use App\Http\Controllers\Frontend\User\DashboardController;
 use App\Http\Controllers\Frontend\User\ProfileController;
 use App\Http\Controllers\Frontend\User\AgentController;
-
+use App\Http\Controllers\Frontend\User\DealController;
+use App\Http\Controllers\Frontend\User\RequestAgentController;
 
 /*
  * Frontend Controllers
@@ -29,8 +30,10 @@ Route::group(['middleware' => ['chklogin']], function () {
     
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('user-profile', [AgentController::class, 'userProfile'])->name('userProfile');
-    Route::get('deal-list', [AgentController::class, 'dealList'])->name('dealList');
-    Route::get('deal-details', [AgentController::class, 'agentList'])->name('agentList');
+    Route::get('deal-list', [DealController::class, 'dealList'])->name('dealList');
+    Route::get('deal-detail/{dealId}', [DealController::class, 'dealDetail'])->name('dealDetail');
+
+    Route::get('request-agent', [RequestAgentController::class, 'requestAgent'])->name('requestAgent');
 
 });
 /*

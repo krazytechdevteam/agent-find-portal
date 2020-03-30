@@ -2,35 +2,35 @@
  * abhiramtiyu (custom css for Login and dashboard page)
  */
 @font-face{
-  font-family: 'proxima nova regular';
-  src:url('font/proxima-nova-regular-webfont.ttf');
-  src:url('font/proxima-nova-regular-webfont.ttf') format('truetype');
+  font-family: 'Libre Franklin';
+  src:url('font/LibreFranklin-Regular.ttf');
+  src:url('font/LibreFranklin-Regular.ttf') format('truetype');
 }
 @font-face{
-  font-family: 'proxima nova thin'; 
-  src:url('font/proxima-nova-thin-webfont.ttf');
-  src:url('font/proxima-nova-thin-webfont.ttf') format('truetype');
+  font-family: 'LibreFranklinLight';
+  src:url('font/LibreFranklin-Light.ttf');
+  src:url('font/LibreFranklin-Light.ttf') format('truetype');
 }
 @font-face{
-  font-family: 'proxima nova bold';
-  src:url('font/proxima-nova-bold-webfont.ttf');
-  src:url('font/proxima-nova-bold-webfont.ttf') format('truetype');
+  font-family: 'LibreFranklinMedium';
+  src:url('font/LibreFranklin-Medium.ttf');
+  src:url('font/LibreFranklin-Medium.ttf') format('truetype');
 }
 @font-face{
-  font-family: 'proxima nova semibold'; 
-  src:url('font/proxima-nova-semibold-webfont.ttf');
-  src:url('font/proxima-nova-semibold-webfont.ttf') format('truetype');
+  font-family: 'LibreFranklinExtraLight';
+  src:url('font/LibreFranklin-ExtraLight.ttf');
+  src:url('font/LibreFranklin-ExtraLight.ttf') format('truetype');
 }
 
 
 body{
-  font-family: 'proxima nova regular', sans-serif;
+  font-family: 'Libre Franklin', sans-serif;
 }
 h1,h2,h3,h4,h5,h6{
-  font-family: 'proxima nova semibold', sans-serif;
+  font-family: 'LibreFranklinExtraLight', sans-serif;
   font-weight: 100;
 }
-.m-t-30{margin-top: 30px;}N
+.m-t-30{margin-top: 30px;}
 .m-b-30{margin-bottom: 30px}
 
 .btn-red{
@@ -49,9 +49,9 @@ h1,h2,h3,h4,h5,h6{
 /*login section css*/
 .login-view{
   background-image: url(../img/login-background.jpg);
-  background-position: center;
+  
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
   width: 100%;
     background-color: #ffffff;
     position: fixed;
@@ -157,7 +157,7 @@ font-size: 0.9em;
     width: 100%;
     margin-bottom: 30px;
     color: #fff;
-    font-family: 'proxima nova regular', sans-serif;
+    font-family: 'Libre Franklin', sans-serif;
 }
 .login-footer ul li{
   opacity: 0.5;
@@ -168,7 +168,7 @@ font-size: 0.9em;
 /*start of Dashboard pages */
 .body-wrapper{padding-bottom: 40px;}
 .dashboard-nav{
-  background-color: #0e52fd;
+  background-color: #fff;
   border-bottom: 1px solid #ccc;
 }
 .dashboard-nav .navbar-brand{
@@ -176,7 +176,7 @@ font-size: 0.9em;
   padding: 10px 15px;
 }
 .dashboard-nav>.container-fluid .navbar-brand{
-  margin-left: 0px;
+  margin-left: -9px;
   padding-left: 0px;
 }
 .dashboard-nav .navbar-brand>img{
@@ -184,18 +184,17 @@ font-size: 0.9em;
 width: 130px;
 }
 .dashboard-nav .navbar-nav>li>a{
-    padding: 27px 29px;
-    color: #FFF;
-    font-size: 1em;
-    font-family: "proxima nova regular";
+  padding:21px 15px;
+  color: #696969;
+  font-size: 14px;
 }
 .dashboard-nav .nav>li>a:focus,
 .dashboard-nav .nav>li>a:hover{
+  color: #e7161b;
   background: none;
-  text-decoration: underline;
 }
 .dashboard-nav .nav>li.active a{
-  text-decoration: underline;
+  color: #e7161b;
 }
 .searchbox{
   min-width: 418px;
@@ -217,7 +216,7 @@ width: 130px;
   position: absolute;
     top: 0px;
     right: 0px;
-    background: #0e52fd;
+    background: #e7161b;
     border: 0px;
     color: #fff;
     /*padding: 9px 14px;*/
@@ -238,35 +237,32 @@ width: 130px;
   font-size: 2.3em;
   color: #fff;
   margin: 0px;
-  font-family: "proxima nova semibold";
+  font-family: "LibreFranklinExtraLight";
 }
 
 .table thead tr th{
   color: #b11a1e;
-    /* text-transform: uppercase; */
-    font-size: 1em;
-    font-weight: 200;
-    font-size: 1.4em;
-    font-family: "proxima nova semibold";
-    border-bottom: 0px;
-    color: #333;
-     padding: 8px 10px;
+  text-transform: uppercase;
+  font-size: 1em;
+  font-weight: 200;
+  font-size: 1em;
+  font-family: "LibreFranklinmedium";
+  border-bottom:0px;
 }
 
 .table tbody tr td{
   font-size: 1em;
-  font-family: "proxima nova semibold";
+  font-family: "LibreFranklinmedium";
   border:none;
   padding: 18px 10px;
 }
-.table tbody tr td input{
-  width: 70%;
+.table tbody tr td:nth-child(1),
+.table tbody tr td:nth-child(2){
+  font-weight: bold;
 }
-.table tbody tr td a{ font-weight: 100 }
-.table thead tr,.table tbody tr{border-bottom: 1px solid #ccc;}
 .filter-btn a{
-  font-family: "proxima nova bold";
-  color: #0e52fd;
+  font-family: "LibreFranklinmedium";
+  color: #e7161b;
   font-size: 1em;font-weight: 200;
   background-image: url("../img/filter-icon.png");
   background-repeat: no-repeat;
@@ -285,23 +281,20 @@ text-decoration: none;
       line-height: 31px;
 }
 .profile-image{
-  width: 40px;
+  width: 35px;
     position: absolute;
     top: 12px;
-    border: 2px solid #fff;
     right: 0px;
     border-radius: 50%;
 }
 .dashboard-nav .navbar-nav>li>a{
       padding-right: 14px;
 }
-.dashboard-nav .navbar-nav>li:last-child>a{padding-right: 43px;}
+.dashboard-nav .navbar-nav>li:last-child>a{
+padding-right: 43px;
+}
 /* dashboard pages start*/
 .wrapper-mainhead{font-weight: 100;color: #282828;font-size: 2.3em;}
-.notification-list {
-      border: 1px solid #ccc;
-      padding-right: 0 !important;
-}
 .notification-list h3{
     font-weight: 100;
     font-size: 1.5em;
@@ -312,9 +305,7 @@ text-decoration: none;
     margin-right: 0px;
 }
 .all-listnotification{
-      max-height: 300px;
-      min-height: 300px;
-      overflow: hidden scroll;
+      max-height: 420px;
 }
 .notification-image img{
     width: 50px;
@@ -335,12 +326,8 @@ text-decoration: none;
     border-top: 1px solid #ccc;
     padding: 10px 0px;
 }
-.notification-message p{font-size:16px}
 .notification-list li:last-child{
-  border-bottom: none;
-}
-.notification-list li:first-child{
-  border-top: none;
+  border-bottom: 1px solid #ccc;
 }
 .notification-status {
     vertical-align: middle;
@@ -348,7 +335,7 @@ text-decoration: none;
     padding-top: 20px;
 }
 .notification-status span{
-  background-color: #0e52fd;
+  background-color: #e7161b;
   padding:0 8px;
    border-radius: 50%;
   }
@@ -399,7 +386,7 @@ font-size:  0.8em;
 }
 .min-height222{min-height: 148px;}
 .min-height137 {
-    min-height: 103px;
+    min-height: 80px;
     position: relative;
 }
 .file-name {
@@ -413,7 +400,7 @@ font-size:  0.8em;
     padding-right: 5px;
 }
 .file-name span:first-child{
-  color: #0e52fd
+  color: #e7161b
 }
 .attachment-details {
     font-size: 0.9em;
@@ -421,13 +408,13 @@ font-size:  0.8em;
 .attach-filelist{
   width: 80%;
     max-height: 100px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 .attach-filelist:hover{
   
 }
 .theme-red{
-  color: #0e52fd;
+  color: #e7161b;
 }
 .clielnt-value a{
   color: #0977f3;
@@ -444,21 +431,18 @@ font-size:  0.8em;
 .interestedin .glyphicon{font-size: 0.9em;}
 .uploadfile {
     position: absolute;
-    top: 8px;
+    top: 0px;
     right: 43px;
-    /* width: 50px; */
-    border-radius: 5px;
-    height: 32px;
-    /* background-image: url(../images/upload.png); */
+    width: 50px;
+    height: 40px;
+    /*background-image: url(../images/upload.png);*/
     cursor: pointer;
-    background: #333333;
-    width: 100px;
 }
 .attach-back {
     position: absolute;
     height: 40px;
     width: 40px;
-    background: #0e52fd;
+    background: #e7161b;
     border-radius: 50%;
     color: #fff;
     font-size: 40px;
@@ -479,11 +463,10 @@ font-size:  0.8em;
       font-size: 0.8em;
 }
 .uploadfile input[type="file"] {
-        opacity: 0;
-    height: 32px;
+    opacity: 0;
+    height: 50px;
     cursor: pointer;
-    width: 100px;
-    z-index: 9999;
+    width: 50px;
 }
 .panel-default {
     border-color: #ddd;
@@ -492,7 +475,7 @@ font-size:  0.8em;
 }
 .chatboxapp .panel-default>.panel-heading {
     color: #fff;
-    background-color: #0e52fd;
+    background-color: #e7161b;
     border-color: #ddd;
     font-size: 1.3em;
     font-weight: bold;
@@ -508,13 +491,12 @@ font-size:  0.8em;
     min-height: 340px;
 }
 .body-wrapper .panel-default>.panel-heading{
-    color: #333;
-    background-color: #ffffff;
-    border-color: #ddd;
+  color: #000;
+    background-color: #ececec;
+    border-color: #ececec;
     font-size: 1.3em;
-    font-weight: bold;
+    font-weight: normal;
     border-radius: 0px;
-    border: 1px solid #dbdbdb;
 }
 .body-wrapper .panel-default>.panel-body {
         border: 1px solid #ddd;
@@ -571,7 +553,7 @@ img{ max-width:100%;}
   margin: 0;
   padding: 18px 16px 10px;
 }
-.inbox_chat { height: 550px; overflow-y: scroll;}
+.inbox_chat { height: 550px; overflow-y: auto;}
 
 .active_chat{ background:#ebebeb;}
 
@@ -592,7 +574,7 @@ img{ max-width:100%;}
     background: #fafafa none repeat scroll 0 0;
     border-radius: 9px 9px 9px 0px;
     color: #646464;
-    font-size: 14px;
+    font-size: 12px;
     margin: 0;
     padding: 5px 10px 5px 12px;
     width: 100%;
@@ -600,7 +582,7 @@ img{ max-width:100%;}
 .time_date {
     color: #747474;
     display: block;
-    font-size: 10px;
+    font-size: 9px;
     margin: 8px 0 0;
     float: right;
 }
@@ -610,9 +592,9 @@ img{ max-width:100%;}
     padding: 0px 0px 0 15px;
     width: 100%;
 }
-.msg_history {
-    max-height: 302px;
-    overflow-y: scroll;
+.msg_history{
+  max-height: 400px;
+  overflow-y: auto;
 }
 .outgoing_msg_img {
     display: inline-block;
@@ -623,7 +605,7 @@ img{ max-width:100%;}
 }
 
  .sent_msg p {
-  background: #0e52fd none repeat scroll 0 0;
+  background: #e7161b none repeat scroll 0 0;
   border-radius: 9px 9px 0px 9px;
   font-size: 12px;
   margin: 0; color:#fff;
@@ -651,7 +633,7 @@ img{ max-width:100%;}
 
 .type_msg {position: relative;    margin-top: 37px;}
 .msg_send_btn {
-     background: #0e52fd none repeat scroll 0 0;
+     background: #e7161b none repeat scroll 0 0;
     border: medium none;
     border-radius: 20px;
     color: #fff;
@@ -669,21 +651,22 @@ img{ max-width:100%;}
 /* Track */
 ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px grey; 
-   /* border-radius: 5px;*/
+    border-radius: 5px;
 }
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-        background: #d1d1d1;
-    /*border-radius: 5px;*/
+    background: red; 
+    border-radius: 5px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #b30000; 
 }
+
 .chatboxapp .msg_history {
-    min-height: 301px;
+    min-height: 399px;
 }
 .location-list {
     min-height: 463px;
@@ -691,20 +674,21 @@ img{ max-width:100%;}
 .interestedin {
     min-height: 99px;
     max-height: 100px;
-    overflow: hidden scroll;
+    overflow: hidden auto;
 }
 .note-section {
     min-height: 164px;
     max-height: 165px;
-    overflow: hidden scroll;
+    overflow: hidden auto;
 }
 .location-list span.glyphicon{
   font-size: 20px;
     position: absolute;
     top: 11px;
     right: 12px;
-    color: #0e52fd;
+    color: #e7161b;
 }
+
 /*end of chat  box*/
 /*modal window css*/
 .body-wrapper .modal-content{
@@ -714,19 +698,20 @@ img{ max-width:100%;}
   color: #FFF;
 }
 .body-wrapper .modal-header{
-    background: #0e52fd;
+    background: #e7161b;
 }
 .body-wrapper .modal-title{
   color: #fff;
 }
 
 .uploadfile span {
-      position: absolute;
-        top: 5px;
-    left: 10px;
-    color: #ffffff;
+    position: absolute;
+    top: 40px;
+    z-index: 999;
+    left: 3px;
+    color: #e7161b;
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 11px;
     font-weight: bold;
 }
 @media
@@ -734,7 +719,9 @@ img{ max-width:100%;}
     and (max-width: 760px){
 
     /* Force table to not be like tables anymore */
-    
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
 
     /* Hide table headers (but not display: none;, for accessibility) */
     .dashboard-table thead tr {
@@ -785,11 +772,7 @@ img{ max-width:100%;}
   @media (max-width: 768px){  
     .dashboard-nav .navbar-nav>li>a {
        padding: 6px 10px;
-       padding: 22px 9px;
-       font-size: 1em;
-    }
-    .profile-dropdown .dropdown-toggle{
-      font-size: 1em;
+       padding: 21px 9px;
     }
     .dashboard-header h1{
       font-size: 2em;
@@ -803,28 +786,35 @@ img{ max-width:100%;}
     .uploadfile{
       right: 0px;
     }
-    #wrapper #page-content-wrapper .container {
-    width: auto;
+     .login-view{
+      background-size: cover;
+          padding-top: 13px;
     }
+    .login-body-section h1 {
+    font-size: 2em;
+    margin-top: 18px;
+    margin-bottom: 17px;
+    }
+    .login-box-container{
+      margin-top: 25px;
+    }
+    .notification-status.col-md-2.text-right {
+    text-align: left;
+    margin-left: 30px;
+    }
+
   }
   @media (max-width: 480px){
     .dashboard-nav .navbar-nav>li>a {
        padding: 6px 10px;
     }
-    .uploadfile {
-    right: 25px;
-    }
-  .notification-status.col-md-2.text-right {
-      text-align: left;
-      margin-left: 30px;
-  }
     .searchbox{
       width: 100%;
       margin-bottom: 10px;
       min-width: auto;
     }
     .navbar-toggle .icon-bar{
-      background: #0e52fd;
+      background: #e7161b;
     }
     .navbar-mobile{
       width: 100%;
@@ -837,7 +827,33 @@ img{ max-width:100%;}
     .dashboard-nav>.container-fluid .navbar-brand{
       margin-left: 10px;
     }
-
+      .login-view{
+      padding-top: 20px;
+    }
+    .login-body-section h1 {
+    font-size: 1.5em;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    }
+    .login-box-container {
+    padding: 22px 22px;
+    }
+    .login-box-container h2{
+      font-size: 2em;
+    }
+    .login-box-container .m-t-30 {
+    margin-top: 0px;
+    }
+    .login-box-container .checkbox {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    }
+    .login-footer{
+      position: static;
+    }
+    .login-header a img {
+    width: 89px;
+    }
   }
   @media(max-width: 1024px){
     .searchbox {
@@ -852,483 +868,17 @@ img{ max-width:100%;}
       min-height: 86px;
     }
     .uploadfile{
-      right: 23px;
+      right: 0px;
     }
     
   }
 
-
-
-  /*latest css code*/
-  #wrapper {
-  padding-left: 250px;
-  transition: all 0.4s ease 0s;
-}
-
-#sidebar-wrapper {
-  margin-left: -250px;
-  top: 75px;
-  left: 250px;
-  width: 250px;
-  background: #e4e4e4;
-  position: fixed;
-  height: 100%;
-  overflow-y: auto;
-  z-index: 1000;
-  transition: all 0.4s ease 0s;
-}
-
-#wrapper.active {
-  padding-left: 0;
-}
-
-#wrapper.active #sidebar-wrapper {
-  left: 0;
-}
-
-#page-content-wrapper {
-  width: 100%;
-  padding-top: 20px;
-  transition: all 0.4s ease 0s;
-  background: #fafafa;
-}
-
-.sidebar-nav {
-  position: absolute;
-  top: 0;
-  width: 250px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  margin-top: 182px;
-}
-
-.sidebar-nav li {
-  line-height: 40px;
-  text-indent: 20px;
-}
-
-.sidebar-nav li a {
-  color: #333333;
-  display: block;
-  text-decoration: none;
-  padding-left: 0px;
-  
-}
-.sidebar-nav li a span{
-  font-family: "proxima nova regular";
-      font-size: 1.3em;
-    font-weight: bold;
-}
-#sidebar-wrapper .nav>li>a{
-    padding: 0px 15px;
-}
-.sidebar-nav li a.active{
-  background: #bdbdbd;
-}
-
-.sidebar-nav li a span:before {
-  position: absolute;
-  left: 0;
-  color: #41484c;
-  text-align: center;
-  width: 20px;
-  line-height: 18px;
-}
-
-.sidebar-nav li a:hover,
-.sidebar-nav li.active {
-  color: #333333;
- background: #bdbdbd;
-  text-decoration: none;
-}
-
-.sidebar-nav li a:active,
-.sidebar-nav li a:focus {
-  text-decoration: none;
-}
-
-.sidebar-nav > .sidebar-brand {
-  height: 65px;
-  line-height: 60px;
-  font-size: 18px;
-}
-
-.sidebar-nav > .sidebar-brand a {
-  color: #999999;
-}
-
-.sidebar-nav > .sidebar-brand a:hover {
-  color: #fff;
-  background: none;
-}
-
-#menu-toggle {
-    text-decoration: none;
-    float: left;
-    color: #fff;
-    padding: 0px 20px 0px 10px;
-    margin-top: 30px;
-}
-
-@media (max-width:767px) {
-
-#wrapper {
-  padding-left: 0;
-}
-
-#sidebar-wrapper {
-  left: 0;
-}
-
-#wrapper.active {
-  position: relative;
-  left: 250px;
-}
-
-#wrapper.active #sidebar-wrapper {
-  left: 250px;
-  width: 250px;
-  transition: all 0.4s ease 0s;
-}
-
-#menu-toggle {
-  display: inline-block;
-}
-.alldeal .table thead tr th{
-    font-size: 1.2em;
-  }
-.alldeal td .bold-text{
-    font-size: 1.2em;
-  }
-}
-
-/*client page*/
-.profile-list > li{
-  font-size: 1.3em;
-  font-weight: bold;
-  padding-bottom: 6px;
-}
-.profile-list > li > span{
-  font-weight: normal;
-  color: #808080;
-}
-.text-light-gray{
- color: #808080; 
- font-size: 1.3em;
-}
-.block-text{
-  display: block;
-  font-size: 1.3em;
-  font-weight: bold;
-}
-.padding-none{
-  padding: 0px;
-}
-.note-body {
-    font-size: 1.4em;
-    line-height: 21px;
-    border: 1px solid #ccc;
-    padding: 6px;
-    overflow-y: scroll;
-    max-height: 175px;
-}
-.panel-heading h4:nth-child(2){
-  margin-bottom: 0px;
-}
-.panel-heading h4:nth-child(2)::after{
-  content: " ";
-  background-color: red;
-}
-.favorite-list .media img{
-  height: 90px;width: 120px;
-}
-.favorite-list {
-    min-height: 400px;
-    max-height: 401px;
-    overflow-y: scroll;
-}
-.favorite-list .media-body{
-  padding-right: 10px;
-      font-size: 1.1em;
-}
-.favorite-list .media-body a{
-      color: #0c5089;
-}
-.favorite-list .media-body .text-light-gray{
-      font-size: 1em;
-}
-.text-total {
-    font-size: 1.1em;
-}
-.client-list{
-    margin-top: 92px;
-    padding-bottom: 20px;
-}
-.client-list .media img{
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-}
-.client-list .media-body p{
-  margin-bottom: 0px;
-  font-size: 1.3em;
-}
-.star-color{
-  color: #ffd203;
-}
-.profile-details {
-    background: #fff;
-    margin-top: -20px;
-    padding: 33px 0px;
-}
-.profile-details p{
-    font-size: 1.3em;
-    margin-bottom: 5px;
-}
-.profile-dropdown{
-  margin-top: 6px;
-}
-.profile-dropdown .dropdown-menu li>a {
-    padding: 2px 29px;
-    color: #000;
-    font-size: 1.4em;
-    font-family: "proxima nova regular";
-}
-.profile-dropdown li>a:hover{
-  text-decoration: none;
-}
-.profile-dropdown li.dropdown{
-    padding-top: 20px;
-    padding-right: 30px;
-}
-.profile-dropdown .dropdown-toggle{
-      font-size: 1.3em;
-    padding-right: 32px;
-    color: #fff;
-}
-.profile-dropdown .dropdown-menu{
-  left: -49px;
-    top: 55px;
-}
-.body-wrapper {
-    padding-bottom: 0px;
-    margin-top: 75px;
-}
-.agent-section{
-  background-color: #fafafa;
-  padding: 30px 0px;
-}
-.agent-section hr{
-  margin-top: 14px;
-    margin-bottom: 10px;
-}
-.text-maroon{
-  color: #0e52fd;
-}
-.agent-details .agent_name{
-    font-size: 3em;
-    font-family: 'proxima nova thin', sans-serif;
-    font-weight: 100;
-}
-.agent-details p {
-    font-size: 1.5em;
-    margin: 0px;
-}
-.agent-details h3{margin: 0px;}
-p.agent-review{
-      font-size: 2em;
-}
-.agent-details .text-light-gray{
-font-size: 1em;
-}
-.text-cyan{
-  color: #279897;
-}
-p.agent-contact{margin-top: 10px;font-size: 1.7em;}
-.most-recent-reviews .media-object{
-    width: 130px;
-    height: 130px;
-}
-.media-body .address p {
-    margin: 0px;
-}
-.most-recent-reviews h3{font-family: 'proxima nova thin', sans-serif;margin: 30px 0px;}
-.m-b-10{    margin-bottom: 30px;}
-.deal-section{
-  background: #fafafa;
-}
-.light-gray-backgroud{
-  background: #fafafa;
-}
-.alldeal {
-    border: 1px solid #ccc;
-    margin-top: 30px;
-    padding: 20px;
-    min-height: 500px;
-    max-height: 501px;
-    overflow-y: scroll;
-    background-color: #fff;
-}
-.bold-text{
-font-family: 'proxima nova semibold', sans-serif;margin: 0px;
-    font-size: 1.2em;
-    color: #0e52fd;
-}
-.light-text{
-  font-family: 'proxima nova thin', sans-serif;margin: 0px;
-}
-.btn{border-width: 2px}
-.btn-default{background-color: #0e52fd;color: #fff;border-color: #0e52fd;}
-.btn-danger{}
-#page-content-wrapper .body-wrapper {
-  margin-top: 0px;
-}
-.leadName:hover {
-              
-    text-decoration: underline;
-    cursor:pointer;
-}
-a {
-    cursor:pointer;
-}
-.profile-details a,
-.media a {
-  
-    font-size: 16px;
-}
-.leadName:hover,
-.username:hover {
-  
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-span.stars, span.stars span {
-  display: block;
-  width: 80px;
-  height: 16px;
-}
-span.stars span {
-  background-position: 0 0;
-}
-.blue-btn {
-  background: #0e52fd; 
+.footer_link {
   color: #fff; 
-  border: 1px solid #0e52fd;
-}
-@media (max-width: 768px){  
-    .profile-image{
-      width: 32px;
-    }
-    .profile-dropdown .dropdown-toggle,
-    .dashboard-nav .navbar-nav>li>a{
-      font-size: 1em;
-    }
-}
-@media (max-width: 480px){
-  .notification-status.col-md-2.text-right {
-    text-align: left;
-    margin-left: 30px;
-  }
+  text-decoration: none;
 }
 
-.dataTables_filter input[type="search"] {
-
-  display: inline-block;
-  width: auto;
-  height: 34px;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #555;
-  background-color: #fff;
-  background-image: none;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-table.dataTable thead th, table.dataTable thead td {
-  padding-left: 10px !important;
-}
-
-span.stars, span.stars span {
-    display: block;
-    background: url(../img/stars.png) 0 -16px repeat-x;
-    width: 80px;
-    height: 16px;
-}
-
-span.stars span {
-    background-position: 0 0;
-}
-
-.m-t-dashboard {
-
-  margin-top: 63px;
-}
-
-.min-height-dashboard {
-
-  min-height: 300px;
-}
-
-.cust-table h1 {
-
-  color: #16325c;
-  font-size: 1.3em !important;
-}
-
-.widget h2 {
-
-  margin-top: 5px;
-  padding-left: 5px;
-}
-
-.truncation {
-    white-space: nowrap;
-    overflow: hidden;
-    -o-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-}
-
-.widget .gridHeader, .widget .gridTitle {
-    align-self: flex-start;
-    font-weight: normal;
-}
-
-.widget .gridHeader {
-    
-    font-family: 'proxima nova regular', sans-serif;
-    font-size: 2rem;
-    color: #16325c;
-    top: inherit;
-    width: calc(100% - 20px);
-}
-.widget .text_cont {
-  font-size: 6rem;
-  padding: 70px 0;
-  text-align: center;
-  color: rgb(4, 132, 75);
-}
-.widget .footer_cont {
-
-  padding-left: 5px;
-  bottom: 10px;
-  position: absolute;
-}
-
-#assigned_deals {
-  width: 100%;
-  height: 230px;
-}
-
-#deals_actively_looking {
-  width: 100%;
-  height: 230px;
-}
-
-.amcharts-export-menu-top-right {
-  top: 10px;
-  right: 0;
+.footer_link:hover {
+  color: #fff; 
+  text-decoration: underline;
 }
