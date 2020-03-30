@@ -14,7 +14,7 @@
             <div class="row">
               <div class="col-md-2">
                 <select class="form-control col-md-2" id="filterByStage" name="stages">
-                    <option value=" ">Stages</option>
+                    <option value="">Stages</option>
                     <option value="Buyer Actively Looking">Actively Looking</option>
                     <option value="Closed">Closed</option>
                     <option value="Inactive">Inactive</option>
@@ -30,7 +30,6 @@
             </div>
           <?php
           } else {
-
 
           }
           ?>
@@ -129,6 +128,25 @@
 			swal("Notes", notes);
             return false;
 		});
+		
+		
+		$("#btnSearch").click(function(){
+			var stage = $('#filterByStage').val();
+			if(stage === "") {
+				window.location.href = '<?php echo url("/") ?>' + '/deal-list';
+			} else {
+				window.location.href = '<?php echo url("/") ?>' + '/deal-list?stage=' + $('#filterByStage').val();
+			}
+		});
+		
+		<?php
+		if(isset($_GET['stage']) && !empty($_GET['stage']) ) {
+		?>	
+			var stageValue = '<?php echo $_GET["stage"]; ?>'
+			$('#filterByStage').val(stageValue);
+		<?php	
+		}
+		?>
     });
 </script>    
 @endpush

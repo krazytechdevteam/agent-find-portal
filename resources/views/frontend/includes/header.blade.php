@@ -17,7 +17,7 @@
         <div class="collapse navbar-collapse" id="navbar">
           <ul class="nav navbar-nav">
             <li><a href="<?php echo url('/') . '/dashboard'; ?>">Dashboard</a></li>
-            <li><a href="<?php echo url('/') . '/deal-list'; ?>">Deals</a></li>
+            <li><a href="<?php echo url('/') . '/deal-list?stage=Buyer Actively Looking'; ?>">Deals</a></li>
             <li><a href="<?php echo url('/') . '/request-agent'; ?>">Request Agent</a></li>
           </ul>
           <ul class="profile-dropdown pull-right">

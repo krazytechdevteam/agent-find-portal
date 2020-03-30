@@ -12,26 +12,20 @@ use Alert;
 class DealController extends Controller
 {
 
-    public function dealList(Request $request) {
-        
+
+    public function dealListDataAPI($param) {
+
         try {
 
-           	$targetURL     = config('app.agentFindApiURL') . 'services/apexrest/LODeals/';
-           	$contactId     = $request->session()->get('AUTH_USER')['ENROLLMENT_ID'];
-           	$searchDeal    = '';
-           	$filterByStage = '';
-
+            $targetURL     = config('app.agentFindApiURL') . 'services/apexrest/LODeals/';
+    
             $client  = new \GuzzleHttp\Client();
-			$respone = $client->post($targetURL, [
-			  'body' => json_encode(array('contactId'     => $contactId, 
-			  							  'searchDeal'    => $searchDeal, 
-			  							  'filterByStage' => $filterByStage
-			  							 )
-			                       )
-			]);
+            $respone = $client->post($targetURL, [
+              'body' => json_encode($param)
+            ]);
 
             $data   = json_decode($respone->getBody());
-           	$status = 'success';
+            $status = 'success';
         
         } catch (\GuzzleHttp\Exception\ClientException $e) {
            
@@ -41,6 +35,20 @@ class DealController extends Controller
             $data     = 'Something went wrong.Please try agin !!!';
         }
 
+        return ['status' => $status,  'data' => $data];
+    }
+
+    public function dealList(Request $request) {
+
+        $param                  = array();
+        $param['contactId']     = $request->session()->get('AUTH_USER')['ENROLLMENT_ID'];
+        $param['searchDeal']    = '';
+        $param['filterByStage'] =  isset($request->stage) ? $request->stage : '';
+
+        $response = $this->dealListDataAPI($param);
+        $data     = $response['data'];
+       
+       
         return view('frontend.user.deal-list', compact(['data']));    
     }
 
@@ -62,6 +70,8 @@ class DealController extends Controller
             $status   = 'error';
             $data     = 'Something went wrong.Please try agin !!!';
         }
+
+        //echo '<pre>'; print_r($data); die;
 
         return view('frontend.user.deal-detail', compact(['data']));    
     }

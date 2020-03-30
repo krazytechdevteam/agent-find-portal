@@ -11,7 +11,8 @@
         <div class="row">
             <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                  <div class="media">
-                    <a class="pull-left" href="#"><img src="<?php echo $data->LO_IMAGE; ?>" alt="" class="media-object">
+                    <a class="pull-left" href="<?php echo url('/') . '/user-profile/' . $data->LO_ID; ?>">
+						<img src="<?php echo $data->LO_IMAGE; ?>" onerror="this.src='{{ asset('public/img/profile-icon.png') }}';this.onerror='';" alt="" class="media-object">
                     </a>
                     <div class="media-body">
                       <h4 class="media-heading username"><a href="<?php echo url('/') . '/user-profile/' . $data->LO_ID; ?>"><?php echo $data->LO_NAME; ?></a></h4>
@@ -24,7 +25,8 @@
             </div>
             <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                 <div class="media">
-                    <a class="pull-left" href="#"><img src="<?php echo $data->BROKER_IMAGE; ?>" alt="" class="media-object">
+                    <a class="pull-left" href="<?php echo url('/') . '/user-profile/' . $data->BROKER_ID; ?>">
+						<img src="<?php echo $data->BROKER_IMAGE; ?>" onerror="this.src='{{ asset('public/img/profile-icon.png') }}';this.onerror='';" alt="" class="media-object">
                     </a>
                     <div class="media-body">
                       <h4 class="media-heading username"><a href="<?php echo url('/') . '/user-profile/' . $data->BROKER_ID; ?>"><?php echo $data->BROKER_NAME; ?></a></h4>
@@ -37,7 +39,7 @@
             </div>
             <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                 <div class="media">
-                    <a class="pull-left" href="#"><img src="<?php echo $data->AGENT_IMAGE; ?>" alt="" class="media-object">
+                    <a class="pull-left" href="<?php echo url('/') . '/user-profile/' . $data->AGENT_ID; ?>"><img src="<?php echo $data->AGENT_IMAGE; ?>" onerror="this.src='{{ asset('public/img/profile-icon.png') }}';this.onerror='';" alt="" class="media-object">
                     </a>
                     <div class="media-body">
                       <h4 class="media-heading username"><a href="<?php echo url('/') . '/user-profile/' . $data->AGENT_ID; ?>"><?php echo $data->AGENT_NAME; ?></a></h4>

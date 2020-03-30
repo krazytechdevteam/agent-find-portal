@@ -9,7 +9,7 @@
     <div class="container agent-details">
         <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12 col-md-offset-1">
             <a class="pull-left" href="#">
-                <img src="<?php echo $data->PROFILE_IMG; ?>" alt="" class="media-object" />
+                <img src="<?php echo isset($data->PROFILE_IMG) ? $data->PROFILE_IMG : ''; ?>" onerror="this.src='{{ asset('public/img/profile-icon.png') }}';this.onerror='';" alt="" class="media-object" />
             </a>
         </div>
         <div class="col-md-7 col-sm-7 col-lg-7 col-xs-12">

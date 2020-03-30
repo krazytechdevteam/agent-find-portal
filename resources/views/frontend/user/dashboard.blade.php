@@ -4,12 +4,19 @@
          
 @section('content')
 
-  <input type="hidden" id="deals_active" value="119" />  
-  <input type="hidden" id="deals_closed" value="10" />  
-  <input type="hidden" id="deals_inactive" value="1" />  
-  <input type="hidden" id="deals_offerout" value="6" />  
-  <input type="hidden" id="deals_under_contract" value="9" />  
-  <input type="hidden" id="deals_onhold" value="3" />  
+  <style>
+  .leadName a {
+	  color:black !important
+  }
+  </style>
+  
+
+  <input type="hidden" id="deals_active" value="<?php echo isset($data->DEALS_COUNT->ActivelyLooking) ? $data->DEALS_COUNT->ActivelyLooking : 0; ?>" />  
+  <input type="hidden" id="deals_closed" value="<?php echo isset($data->DEALS_COUNT->Closed) ? $data->DEALS_COUNT->Closed : 0; ?>" />  
+  <input type="hidden" id="deals_inactive" value="<?php echo isset($data->DEALS_COUNT->Inactive) ? $data->DEALS_COUNT->Inactive : 0; ?>" />  
+  <input type="hidden" id="deals_offerout" value="<?php echo isset($data->DEALS_COUNT->OfferOut) ? $data->DEALS_COUNT->OfferOut : 0; ?>" />  
+  <input type="hidden" id="deals_under_contract" value="<?php echo isset($data->DEALS_COUNT->UnderContract) ? $data->DEALS_COUNT->UnderContract : 0; ?>" />  
+  <input type="hidden" id="deals_onhold" value="<?php echo isset($data->DEALS_COUNT->OnHold) ? $data->DEALS_COUNT->OnHold : 0; ?>" />  
         
     <section class="dashboard-section">
       <div class="container-fluid">
@@ -19,23 +26,46 @@
             <div class="notification-list container-fluid">
               <div class="all-listnotification">
                 <ul class="list-unstyled">
-                  <li class="ng-scope" ng-repeat="contactNotification in contactNotifications['NOTIFICATIONS']">
-                  <div class="each-notification row">
-                    <div class="notification-image col-lg-1 col-md-1 col-sm-1 col-xs-3">
-                      <img class="img-circle" src="" />
-                    </div>
+                  
+					<?php
+					if(isset($data->DEALS_NOTIFICATION) && count($data->DEALS_NOTIFICATION)>0) {
+						foreach($data->DEALS_NOTIFICATION as $r) {
+					?>	
+							<li class="ng-scope">
+								<div class="each-notification row">
+									<div class="notification-image col-lg-1 col-md-1 col-sm-1 col-xs-3">
+										<img class="img-circle" src="<?php echo $r->IMAGE;  ?>" onerror="this.src='{{ asset('public/img/profile-icon.png') }}';this.onerror='';" />
+									</div>
 
-                    <div class="notification-message col-md-8 col-lg-9 col-sm-8 col-xs-9">
-                      <p class="notification-user">
-                      <span class="leadName" id="">TEST</span>
-                      <span class="notification-time">asas</span></p>
-                      <p class="comment-user">dssdsd for <span class="comment-for"><a ng-click="getLeadDetails(contactNotification.Notification_Against__c)">ash</a></span></p>
-                    </div>
-                    <div class="notification-status col-md-3 col-lg-2 col-sm-3 col-xs-12 text-right">
-                      <button class="btn btn-green btn-danger" type="button">New Alert</button>
-                    </div>
-                  </div>
-                  </li>
+									<div class="notification-message col-md-8 col-lg-9 col-sm-8 col-xs-9">
+										<p class="notification-user">
+											<span class="leadName" id="">
+												<a href="<?php echo url('/') . '/user-profile/' . $r->USER_ID; ?>"><?php echo $r->NAME; ?></a>
+											</span>
+											<span class="notification-time"><?php echo date("d M, Y", strtotime($r->DATE)); ; ?></span>
+										</p>
+										<p class="comment-user">
+											<span class="comment-for">
+												<a href="<?php echo url('/') . '/deal-detail/' . $r->DEAL_ID; ?>"><?php echo $r->DESC; ?></a>
+											</span>
+										</p>
+									</div>
+									<div class="notification-status col-md-3 col-lg-2 col-sm-3 col-xs-12 text-right">
+										<a href="<?php echo url('/') . '/deal-detail/' . $r->DEAL_ID; ?>"><button class="btn btn-green btn-danger" type="button">New Alert</button></a>
+									</div>
+								</div>
+							</li>
+					
+					<?php
+						}
+					} else {
+					?>
+						<span style="padding: 200px;font-size: 15px;font-weight: bold;color: #0e52fd;">No Records Found</span>
+					
+					<?php	
+					}
+					?>
+				  
                 </ul>
               </div>
 
@@ -93,7 +123,66 @@
               <div class="min-height-dashboard">
                 <h1 class="wrapper-mainhead">Deals Under Contract</h1>
 
-                <div id="dealsUnderContract"></div>
+                <div id="dealsUnderContract" class="all-listnotification">
+					<?php
+					  if(isset($dealUnderContractData->DEALS) && count($dealUnderContractData->DEALS) > 0) {
+					?>
+	  
+						<table class="table table-condensed deal-table" id="">
+							<thead>
+							  <tr>
+							  <th width="20%">Deal</th>
+							  <th width="15%">Loan Officer</th>
+							  <th width="15%">Assigned Agent</th>
+							  <th width="20%">Timeframe for Purchase</th>
+							</tr>
+							</thead>
+							<tbody>
+							  <?php
+								foreach ($dealUnderContractData->DEALS as $k => $r) {
+								?>
+								  <tr>
+										<td>
+											<p class="bold-text">
+											  <a href="<?php echo url('/')  . '/deal-detail/' . $r->DEAL_ID; ?>">
+												  <?php echo $r->DEAL_NAME; ?>
+											  </a>
+											</p>
+											<p class="light-text"><?php echo $r->DEAL_EMAIL; ?></p>
+											<p class="light-text"><?php echo $r->DEAL_PHONE; ?></p>
+										</td>
+										
+										<td>
+											<p class="bold-text"><a href="<?php echo url('/') . '/user-profile/' . $r->LO_ID; ?>"><?php echo $r->LO_NAME; ?></a></p>
+											<p class="light-text"><?php echo $r->LO_EMAIL; ?></p>
+											<p class="light-text"><?php echo $r->LO_PHONE; ?></p>
+										</td>
+
+										<td>
+											<p class="bold-text"><a href="<?php echo url('/') . '/user-profile/' . $r->AGENT_ID; ?>"><?php echo $r->AGENT_NAME; ?></p>
+											<p class="light-text"><?php echo $r->AGENT_EMAIL; ?></p>
+											<p class="light-text"><?php echo $r->AGENT_PHONE; ?></p>
+									   </td>
+										
+										<td>
+										  <p class="light-text"><?php echo $r->PURCHASE_TIMEFRAME; ?></p>
+										</td>
+
+									  </tr>
+								<?php
+								}
+							  ?>
+							</tbody>
+						  </table>	
+					<?php
+					} else {
+					?>
+						<span style="padding: 200px;font-size: 15px;font-weight: bold;color: #0e52fd;">No Records Found</span>
+					
+					<?php	
+					}
+					?>
+				</div>
               </div>
 
             </div>
@@ -104,7 +193,66 @@
               <div class="min-height-dashboard">
                 <h1 class="wrapper-mainhead">Deals Making Offer</h1>
 
-                <div id="dealsMakingOffer"></div>
+                <div id="dealsMakingOffer" class="all-listnotification">
+					<?php
+					  if(isset($dealsMakingOfferData->DEALS) && count($dealsMakingOfferData->DEALS) > 0) {
+					?>
+	  
+						<table class="table table-condensed deal-table" id="list_data">
+							<thead>
+							  <tr>
+							  <th width="20%">Deal</th>
+							  <th width="15%">Loan Officer</th>
+							  <th width="15%">Assigned Agent</th>
+							  <th width="20%">Timeframe for Purchase</th>
+							</tr>
+							</thead>
+							<tbody>
+							  <?php
+								foreach ($dealsMakingOfferData->DEALS as $k => $r) {
+								?>
+								  <tr>
+										<td>
+											<p class="bold-text">
+											  <a href="<?php echo url('/')  . '/deal-detail/' . $r->DEAL_ID; ?>">
+												  <?php echo $r->DEAL_NAME; ?>
+											  </a>
+											</p>
+											<p class="light-text"><?php echo $r->DEAL_EMAIL; ?></p>
+											<p class="light-text"><?php echo $r->DEAL_PHONE; ?></p>
+										</td>
+										
+										<td>
+											<p class="bold-text"><a href="<?php echo url('/') . '/user-profile/' . $r->LO_ID; ?>"><?php echo $r->LO_NAME; ?></a></p>
+											<p class="light-text"><?php echo $r->LO_EMAIL; ?></p>
+											<p class="light-text"><?php echo $r->LO_PHONE; ?></p>
+										</td>
+
+										<td>
+											<p class="bold-text"><a href="<?php echo url('/') . '/user-profile/' . $r->AGENT_ID; ?>"><?php echo $r->AGENT_NAME; ?></p>
+											<p class="light-text"><?php echo $r->AGENT_EMAIL; ?></p>
+											<p class="light-text"><?php echo $r->AGENT_PHONE; ?></p>
+									   </td>
+										
+										<td>
+										  <p class="light-text"><?php echo $r->PURCHASE_TIMEFRAME; ?></p>
+										</td>
+
+									  </tr>
+								<?php
+								}
+							  ?>
+							</tbody>
+						  </table>	
+					<?php
+					} else {
+					?>
+						<span style="padding: 200px;font-size: 15px;font-weight: bold;color: #0e52fd;">No Records Found</span>
+					
+					<?php	
+					}
+					?>					   
+				</div>
               </div>
 
             </div>
@@ -126,6 +274,8 @@
 <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
 <!-- Chart code -->
+
+
 <script>
 window.addEventListener("load", function(){
 
@@ -246,6 +396,8 @@ series.columns.template.adapter.add("fill", function(fill, target) {
 
 
 });
+
+
 
 </script>    
 @endpush
