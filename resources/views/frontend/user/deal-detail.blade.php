@@ -234,9 +234,31 @@
                                         <div class="panel-body">
                                             <div class="attachment min-height137">
                                                 <div class="attach-filelist">
-                                                    <div class="eachfile" ng-show="attachmentsNotFound">There is no attachments available.</div>
+													<?php
+													if(isset($dealAttachment->ATTACHMENTS) && count($dealAttachment->ATTACHMENTS)>0) {
+														foreach($dealAttachment->ATTACHMENTS as $a) {
+													?>	
+															
+															<div class="eachfile">
+																<p class="file-name">
+																	<span class="glyphicon glyphicon-file"></span> 
+																	<a href="<?php echo $a->URL; ?>" target="_blank"><?php echo $a->NAME; ?></a>
+																	<a href="<?php echo $a->URL; ?>" target="_blank">
+																		<span class="glyphicon glyphicon-download-alt" style="color: #000;"></span>
+																	</a>
+																</p>
+                                                            <p class="attachment-details text-muted">Upload by <?php echo $a->OWNER . " " . date("d M, Y", strtotime($a->UPLOAD_TIME));; ?>  </p>
+                                                        </div>
+	
+													<?php
+														}
+													} else {
+													?>
+														<div class="eachfile" ng-show="attachmentsNotFound">No Attachments Available.</div>
+													<?php		
+													}
+													?>
                                                     
-                                                    <!-- ngRepeat: dealDet in dealDetail['ATTACHMENTS'] -->
                                                 </div>
                                             </div>
                                         </div>

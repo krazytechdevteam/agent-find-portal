@@ -54,6 +54,9 @@ class DealController extends Controller
 
     public function dealDetail(Request $request, $dealId) {
         
+        $dealAttachment = array();
+        $data = array();
+
         try {
 
             $targetURL = config('app.agentFindApiURL') . 'services/apexrest/LODealDetail/'.$dealId;
@@ -62,6 +65,10 @@ class DealController extends Controller
             $respone   = $client->get($targetURL);
             $data      = json_decode($respone->getBody());
 
+            //GET THE ATTACHMENT LIST 
+            $attachmentUrl      = config('app.agentFindApiURL') . 'services/apexrest/LODealFiles/'.$dealId;
+            $attachmentResponse = $client->get($attachmentUrl);
+            $dealAttachment     = json_decode($attachmentResponse->getBody());
         
         } catch (\GuzzleHttp\Exception\ClientException $e) {
            
@@ -71,9 +78,7 @@ class DealController extends Controller
             $data     = 'Something went wrong.Please try agin !!!';
         }
 
-        //echo '<pre>'; print_r($data); die;
-
-        return view('frontend.user.deal-detail', compact(['data']));    
+        return view('frontend.user.deal-detail', compact(['data', 'dealAttachment']));    
     }
 
 }
