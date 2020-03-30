@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', app_name() . ' | ' . __('navs.frontend.dashboard') )
+@section('title', app_name() . ' | ' . __('Profile') )
         
 @section('content')
 

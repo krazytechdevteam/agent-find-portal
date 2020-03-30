@@ -81,13 +81,13 @@
                             </td>
                            
                             <td>
-                                <p class="bold-text"><?php echo $r->LO_NAME; ?></p>
+                                <p class="bold-text"><a href="<?php echo url('/') . '/user-profile/' . $r->LO_ID; ?>"><?php echo $r->LO_NAME; ?></a></p>
                                 <p class="light-text"><?php echo $r->LO_EMAIL; ?></p>
                                 <p class="light-text"><?php echo $r->LO_PHONE; ?></p>
                             </td>
 
                             <td>
-                                <p class="bold-text"><?php echo $r->AGENT_NAME; ?></p>
+                                <p class="bold-text"><a href="<?php echo url('/') . '/user-profile/' . $r->AGENT_ID; ?>"><?php echo $r->AGENT_NAME; ?></p>
                                 <p class="light-text"><?php echo $r->AGENT_EMAIL; ?></p>
                                 <p class="light-text"><?php echo $r->AGENT_PHONE; ?></p>
                            </td>
