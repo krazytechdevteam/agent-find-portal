@@ -81,4 +81,36 @@ class DealController extends Controller
         return view('frontend.user.deal-detail', compact(['data', 'dealAttachment']));    
     }
 
+    public function updateDealStatus(Request $request) {
+
+        try {
+
+            $targetURL = config('app.agentFindApiURL') . 'services/apexrest/LODealDetail/';
+    
+            $client  = new \GuzzleHttp\Client();
+            $respone = $client->post($targetURL, [
+              'body' => json_encode(array('DEAL_ID' => $request->deal_id, 'STATUS' => $request->deal_status))
+            ]);
+
+            $data   = json_decode($respone->getBody());
+            $status = 'success';
+        
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+           
+            $response = $e->getResponse();
+            $result   = json_decode($response->getBody());
+            $status   = 'error';
+            $data     = 'Something went wrong.Please try agin !!!';
+        }
+
+        if($data->STATUS == 'success') {
+            alert()->success('Deal is successfully updated', 'Thank You');
+        } else {
+            alert()->success('Something went wrong.Please try agin !!!', 'Error');
+        }
+
+          return redirect()->back();
+
+    }
+
 }

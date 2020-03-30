@@ -33,6 +33,7 @@ Route::group(['middleware' => ['chklogin']], function () {
     Route::get('deal-list', [DealController::class, 'dealList'])->name('dealList');
     Route::get('deal-detail/{dealId}', [DealController::class, 'dealDetail'])->name('dealDetail');
 
+	Route::post('update-deal-status', [DealController::class, 'updateDealStatus'])->name('updateDealStatus');
     Route::get('request-agent', [RequestAgentController::class, 'requestAgent'])->name('requestAgent');
 
 });

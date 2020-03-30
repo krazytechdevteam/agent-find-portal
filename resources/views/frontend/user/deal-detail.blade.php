@@ -85,15 +85,20 @@
                     <a href="javascript: updateStatusDialog();">
                         <span class="fa fa-anchor solo">Update Status</span>
                     </a>
-                    <div class="slideup" style="text-align: center; display: none;">
-                        <select id="dealStatus" style="height: 35px; margin-bottom: 10px;">
-                            <option value="Active Buyer">Active Buyer</option>
-                            <option value="Closed">Closed</option>
-                            <option value="Dead">Dead</option>
-                            <option value="No Communication with Buyer">No Communication with Buyer</option>
-                        </select><br>
-                        <input class="msg_send_btn" id="updateStatus" onclick="updateDealStatus('0063D000008obBBQAY');" style="height: 40px;" type="button" value="Update">
-                    </div>
+					<form method="post" action="<?php echo url('/') . '/update-deal-status'; ?>">
+						 {{ csrf_field() }}
+						<div class="slideup" style="text-align: center; display: none;">
+							<input type="hidden" name="deal_id" value="<?php echo $data->DEAL_ID; ?>"/>
+							<select name="deal_status" id="deal_status" style="height: 35px; margin-bottom: 10px;">
+								<option value="Active Buyer">Active Buyer</option>
+								<option value="Closed">Closed</option>
+								<option value="Dead">Dead</option>
+								<option value="No Communication with Buyer">No Communication with Buyer</option>
+							</select><br>
+							<input class="msg_send_btn" id="updateStatus" style="height: 40px;" type="submit" value="Update">
+						</div>
+					</form>
+                    
                 </li>
             </ul>
                         
