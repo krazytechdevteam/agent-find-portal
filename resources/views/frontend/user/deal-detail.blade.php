@@ -89,7 +89,7 @@
                             <option value="Dead">Dead</option>
                             <option value="No Communication with Buyer">No Communication with Buyer</option>
                         </select><br>
-                        <input class="msg_send_btn" id="updateStatus" ng-click="updateDealStatus('0063D000008obBBQAY');" style="height: 40px;" type="button" value="Update">
+                        <input class="msg_send_btn" id="updateStatus" onclick="updateDealStatus('0063D000008obBBQAY');" style="height: 40px;" type="button" value="Update">
                     </div>
                 </li>
             </ul>
@@ -313,3 +313,111 @@
     </div>
 
 @endsection
+
+@push('after-scripts')
+<script type="text/javascript">
+var locations = [];
+
+function showActivity() {
+    
+    var element = document.getElementById("activityTabCont");
+    element.classList.add("slds-show");
+    element.classList.remove("slds-hide");
+    
+    element = document.getElementById("attachmentTabCont");
+    element.classList.add("slds-hide");
+    element.classList.remove("slds-show");
+    
+    element = document.getElementById("activityTab");
+    element.classList.add("slds-is-active");
+    
+    element = document.getElementById("attachmentTab");
+    element.classList.remove("slds-is-active");
+}
+
+function showAttachments() {
+    
+    var element = document.getElementById("attachmentTabCont");
+    console.log(element.classList);
+    element.classList.add("slds-show");
+    element.classList.remove("slds-hide");
+    
+    element = document.getElementById("activityTabCont");
+    element.classList.add("slds-hide");
+    element.classList.remove("slds-show");
+    
+    element = document.getElementById("activityTab");
+    element.classList.remove("slds-is-active");
+    
+    element = document.getElementById("attachmentTab");
+    element.classList.add("slds-is-active");
+}       
+
+/*Menu-toggle*/
+$("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("active");
+});
+
+$.fn.stars = function() {
+    return $(this).each(function() {
+        $(this).html($('<span />').width(Math.max(0, (Math.min(5, parseFloat($(this).html())))) * 16));
+    });
+}
+    
+function myMap() {
+    var mapProp= {
+        center:new google.maps.LatLng(51.508742,-0.120850),
+        zoom:5,
+    };
+    var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+}
+
+$('span.stars').stars();
+
+setTimeout(function(){ 
+
+    initMap(locations)
+
+}, 3000);
+
+
+function initMap(locations) {
+
+var map = new google.maps.Map(document.getElementById('googleMap'), {
+  zoom: 5,
+  center: locations[0]
+});
+
+// Create an array of alphabetical characters used to label the markers.
+var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+// Add some markers to the map.
+// Note: The code uses the JavaScript Array.prototype.map() method to
+// create an array of markers based on a given "locations" array.
+// The map() method here has nothing to do with the Google Maps API.
+var markers = locations.map(function(location, i) {
+  return new google.maps.Marker({
+    position: location,
+    label: labels[i % labels.length]
+  });
+});
+
+  let clusterOptions = { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'};
+  
+// Add a marker clusterer to manage the markers.
+var markerCluster = new MarkerClusterer(map, markers, clusterOptions);
+}
+
+function updateStatusDialog() {
+    
+    if ( $( "div.slideup" ).is( ":hidden" ) ) {
+        $( "div.slideup" ).slideDown( "slow" );
+    } else {
+        $( "div.slideup" ).hide();
+    }
+}
+</script>
+ 
+<script src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places&amp;ext=.js&amp;key=AIzaSyCHz6vkx7Zvt4nECX_sDVrYHkn5J64ZWuY"></script>
+@endpush

@@ -297,7 +297,7 @@ text-decoration: none;
 }
 .dashboard-nav .navbar-nav>li:last-child>a{padding-right: 43px;}
 /* dashboard pages start*/
-.wrapper-mainhead{font-weight: 100;color: #282828;font-size: 2.3em;}
+.wrapper-mainhead{font-weight: 100;color: #16325c;font-size: 2em;}
 .notification-list {
       border: 1px solid #ccc;
       padding-right: 0 !important;
