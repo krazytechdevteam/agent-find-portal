@@ -81,11 +81,11 @@ class AgentController extends Controller
 
     }
 
-    public function userProfile(Request $request) {
+    public function userProfile(Request $request, $profile_id) {
  
     	try {
 
-           	$targetURL     = config('app.agentFindApiURL') . 'services/apexrest/UserInfo/'.$request->session()->get('AUTH_USER')['ENROLLMENT_ID'];
+           	$targetURL     = config('app.agentFindApiURL') . 'services/apexrest/UserInfo/'.$profile_id;
 
             $client  = new \GuzzleHttp\Client();
 			$respone = $client->get($targetURL);
@@ -100,7 +100,7 @@ class AgentController extends Controller
             $status   = 'error';
             $data     = 'Something went wrong.Please try agin !!!';
         }
-
+        
         return view('frontend.user.user-profile', compact(['data'])); 
     }
 

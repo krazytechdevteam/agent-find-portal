@@ -29,7 +29,7 @@ Route::get('login', [AgentController::class, 'showLoginForm'])->name('showLoginF
 Route::group(['middleware' => ['chklogin']], function () {
     
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('user-profile', [AgentController::class, 'userProfile'])->name('userProfile');
+    Route::get('user-profile/{profile_id}', [AgentController::class, 'userProfile'])->name('userProfile');
     Route::get('deal-list', [DealController::class, 'dealList'])->name('dealList');
     Route::get('deal-detail/{dealId}', [DealController::class, 'dealDetail'])->name('dealDetail');
 

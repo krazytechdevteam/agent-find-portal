@@ -15,25 +15,36 @@
         <div class="col-md-7 col-sm-7 col-lg-7 col-xs-12">
             <div>
                 <div>
-                    <h3 class="text-capitalize text-maroon no-margin">Agent find - TODO RECORD TYPE</h3>
+                    <h3 class="text-capitalize text-maroon no-margin">Agent find - <?php echo $data->USER_DETAILS->RECORD_TYPE; ?></h3>
                     <h1 class="agent_name" style="margin-top: 15px;">
                     	<?php echo $data->USER_DETAILS->NAME; ?>
                     </h1>
                     <p class="agent-review">
-                        <span style="float: left;"><?php //TODO echo Total_Average_Rating__c; ?></span>
-                        <span style="float: left; margin-top: 10px; margin-left: 10px; margin-right: 10px;" class="stars">2.3<?php //TODO echo Total_Average_Rating__c; ?></span>
+                        <span style="float: left;"></span>
+                        <span style="float: left; margin-top: 10px; margin-left: 10px; margin-right: 10px;" class="stars"><?php echo $data->USER_DETAILS->RATING; ?></span>
 
                         <?php
-                        //TODO if($Total_Reviews__c > 0) {
+                       if(isset($data->USER_DETAILS->TOTAL_REVIEWS) ) {
                         ?>
                         	<span class="text-cyan">
-                        	<?php //TODO echo Total_Reviews__c.' reviews'; ?></span>
+                        	<?php echo $data->USER_DETAILS->TOTAL_REVIEWS.' reviews'; ?></span>
                         <?php
-                    	//}
+                    	}
                     	?>
                     </p>
-                    <p>With Agent Find since <?php //TODO echo Year_Joined_Agent_Find__c; ?></p>
-                    <hr />
+                    <?php
+					if(isset($data->USER_DETAILS->JOINED_SINCE)) {
+					?>
+						<p>With Agent Find since <?php echo $data->USER_DETAILS->JOINED_SINCE; ?></p>
+						
+					<?php	
+					} else {
+						echo '<br>';
+					}
+					?>
+					
+                    
+					<hr />
                     
 					<?php
 					if(isset($data->USER_DETAILS->AGENT_LICENSE_NO)) {
@@ -85,7 +96,7 @@ if(isset($data->USER_FEEDBACK) && count($data->USER_FEEDBACK)>0 ) {
 				</a>
 				<div class="media-body">
 					<p class="star-color">
-						<span class="stars">2<span style="width: 48px;"></span></span>
+						<span class="stars"><?php echo $r->REVIEW; ?><span style="width: 48px;"></span></span>
 					</p>
 					<p class="by-author"><?php echo $r->RATING; ?></p> 
 					<div class="row">
