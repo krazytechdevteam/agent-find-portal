@@ -113,4 +113,47 @@ class DealController extends Controller
 
     }
 
+    public function updateDealAttachment(Request $request) {
+
+        try {
+
+            $targetURL = config('app.agentFindApiURL') . 'services/apexrest/LODealFiles/';
+
+            $file_tmp = $_FILES['deal_upload']['tmp_name'];
+            $type     = pathinfo($file_tmp, PATHINFO_EXTENSION);
+            $data     = file_get_contents($file_tmp);
+            $base64   = base64_encode($data);
+           
+            $param['FILE_TYPE'] = $_FILES['deal_upload']['type'];
+            $param['FILE_NAME'] = $_FILES['deal_upload']['name'];
+            $param['FILE_DATA'] = $base64;
+            $param['DEAL_ID']   = $request->deal_id;
+
+            $client  = new \GuzzleHttp\Client();
+            $respone = $client->post($targetURL, [
+              'body' => json_encode($param)
+            ]);
+
+            $data   = json_decode($respone->getBody());
+            $status = 'success';
+        
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+           
+            $response = $e->getResponse();
+            $result   = json_decode($response->getBody());
+            $status   = 'error';
+            $data     = 'Something went wrong.Please try agin !!!';
+        }
+
+       // echo '<pre>'; print_r($data); die;
+
+        if($data->STATUS == 'success') {
+            alert()->success('File is successfully uploaded', 'Thank You');
+        } else {
+            alert()->success('Something went wrong.Please try agin !!!', 'Error');
+        }
+
+        return redirect()->back();
+    }
+
 }

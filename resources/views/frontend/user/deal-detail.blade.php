@@ -233,7 +233,12 @@
                                         <div class="panel-heading">Attachment
                                             <div class="uploadfile">
                                                 <span>Upload File</span>
-                                                <input name="file" type="file">
+												<form method="post" action="<?php echo url('/') . '/upload-deal-attachment'; ?>" enctype="multipart/form-data">
+													 {{ csrf_field() }}
+													 <input type="hidden" name="deal_id" value="<?php echo $data->DEAL_ID; ?>"/>
+													<input name="deal_upload" type="file" onchange="javascript:this.form.submit();">
+												</form>
+                                                
                                             </div>
                                         </div>
                                         <div class="panel-body">
