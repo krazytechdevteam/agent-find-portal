@@ -38,6 +38,7 @@ Route::group(['middleware' => ['chklogin']], function () {
     Route::post('upload-deal-attachment', [DealController::class, 'updateDealAttachment'])->name('updateDealAttachment');
 	
     Route::get('request-agent', [RequestAgentController::class, 'requestAgent'])->name('requestAgent');
+    Route::post('request-agent-save', [RequestAgentController::class, 'requestAgentSave'])->name('requestAgentSave');
 
 });
 /*

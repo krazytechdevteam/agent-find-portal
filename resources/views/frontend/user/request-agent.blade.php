@@ -12,7 +12,8 @@
         </div>
       </div>
 
-      <form id="requestAgentFrm" class="ng-pristine ng-valid">
+	  <form method="post" id="requestAgentFrm" class="" action="<?php echo url('/') . '/request-agent-save'; ?>">
+        {{ csrf_field() }}
       <div class="row">
         <div class="col-md-12">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -24,25 +25,26 @@
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                 <label>First Name</label><br>
-                                <input class="form-control" disabled="disabled" type="text" value="Scott-Test12">
+                                <input class="form-control" disabled="disabled" type="text" value="<?php echo $data->FIRSTNAME; ?>">
                             </div>
 
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                 <label>Last Name</label><br>
-                                <input class="form-control" disabled="disabled" type="text" value="Edwards">
+                                <input class="form-control" disabled="disabled" type="text" value="<?php echo $data->LASTNAME; ?>">
                             </div>
 
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                 <label>Email</label><br>
-                                <input class="form-control" disabled="disabled" type="text" value="sedwards@mortgagecompany.com">
+                                <input class="form-control" disabled="disabled" type="text" value="<?php echo $data->EMAIL; ?>">
                             </div>
                        </div>
                        <div class="row">
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                 <label>Mobile</label><br>
-                                <input class="form-control" disabled="disabled" type="text" value="(913) 213-4544">
+                                <input class="form-control" disabled="disabled" type="text" value="<?php echo $data->PHONE; ?>">
                             </div>
                         </div>
+						
                     </div>
                   </div>
               </div>
@@ -144,8 +146,7 @@
       <div class="row">
         <div class="col-md-12">
             <div class="col-md-4">
-              <input class="btn btn-green btn-default" id="btnSearch" name="btnSearch" type="submit" value="Submit">
-              <span id="processing" style="display: none;">Processing your request...</span>
+              <button class="btn btn-green btn-default" id="btnSave" name="btnSave" type="submit">Submit</button>
           </div>
         </div>
     </div>
@@ -156,3 +157,19 @@
         </section>
 
 @endsection
+
+@push('after-scripts')
+
+<script type="text/javascript">
+  
+  $(document).ready(function() {
+		
+    $('form#requestAgentFrm').submit(function (e) { 
+        var formbtn = "#requestAgentFrm button[type=submit]";
+        $(formbtn).text('Loading...').attr('disabled', true);
+    });
+		
+  });
+
+</script>    
+@endpush
