@@ -56,7 +56,7 @@ class DealController extends Controller
         
         $dealAttachment = array();
         $data           = array();
-        $chatdata       = array();
+        $todayChatData  = array();
         $contactid = $request->session()->get('AUTH_USER')['ENROLLMENT_ID'];
 
         try {
@@ -72,11 +72,40 @@ class DealController extends Controller
             $attachmentResponse = $client->get($attachmentUrl);
             $dealAttachment     = json_decode($attachmentResponse->getBody());
 
-            //GET THE CHAT HISTORY
-            $chatURL      = 'https://afnew-agentfind.cs97.force.com/AgentFind/services/apexrest/LOChat/'.$dealId;
-            $chatResponse = $client->get($chatURL);
-            $chatdata     = json_decode($chatResponse->getBody());
+            //GET THE CHAT OF TODAY 
+            $todayChatURL      = 'https://afnew-agentfind.cs97.force.com/AgentFind/services/apexrest/LOAgentChat/'.$dealId;
+            $todayChatResponse = $client->get($todayChatURL);
+            $todayChatData     = json_decode($todayChatResponse->getBody());
 
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+           
+            $response = $e->getResponse();
+            $result   = json_decode($response->getBody());
+            $status   = 'error';
+            $data     = 'Something went wrong.Please try agin !!!';
+        }
+
+        return view('frontend.user.deal-detail', compact(['data', 'dealAttachment', 'todayChatData', 'contactid', 'dealId']));    
+    }
+
+    public function pushNewChat(Request $request) {
+
+        $param              = array();
+        $param['dealId']    = $request->dealId;
+        $param['contactId'] = $request->contactId;
+        $param['message']   = $request->message;
+
+        try {
+
+            $targetURL = config('app.agentFindApiURL') . 'services/apexrest/LOChat/';
+    
+            $client  = new \GuzzleHttp\Client();
+            $respone = $client->post($targetURL, [
+              'body' => json_encode($param)
+            ]);
+
+            $data   = json_decode($respone->getBody());
+            $status = 'success';
         
         } catch (\GuzzleHttp\Exception\ClientException $e) {
            
@@ -86,7 +115,34 @@ class DealController extends Controller
             $data     = 'Something went wrong.Please try agin !!!';
         }
 
-        return view('frontend.user.deal-detail', compact(['data', 'dealAttachment', 'chatdata', 'contactid']));    
+        return response()->json(['status' => $status]);
+    }
+
+
+    public function loadOldChat(Request $request, $dealId) {
+
+        $OldChatData    = array();
+        $contactid = $request->session()->get('AUTH_USER')['ENROLLMENT_ID'];
+
+        try {
+
+            //GET THE CHAT OLD HISTORY
+            $OldChatURL      = 'https://afnew-agentfind.cs97.force.com/AgentFind/services/apexrest/LOChat/'.$dealId;
+            $client          = new \GuzzleHttp\Client();
+            $oldChatResponse = $client->get($OldChatURL);
+            $OldChatData     = json_decode($oldChatResponse->getBody());
+            $status          = 'success';
+            $message         = '';
+
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+           
+            $response = $e->getResponse();
+            $result   = json_decode($response->getBody());
+            $status   = 'error';
+            $message  = 'Something went wrong.Please try agin !!!';
+        }
+
+        return response()->json(['status' => $status, 'data' => $OldChatData, 'contactid' => $contactid]);
     }
 
     public function updateDealStatus(Request $request) {

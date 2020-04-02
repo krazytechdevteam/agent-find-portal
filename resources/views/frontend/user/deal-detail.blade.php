@@ -279,69 +279,85 @@
                         <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
                             <div class="chatboxapp">
                                 <div class="panel panel-default">
-                                    <div class="panel-heading">Chatter</div>
+                                    <div class="panel-heading">Chatter 
+										<div class="historyChatDiv" style="text-align:center; margin-top:-28px">
+											<button class="btn btn-primary btn-xs" id="historyChat" type="button">Load Old Chat</button>
+										</div>
+									</div>
                                     <div class="panel-body">
                                         <div class="mesgs">
                                             <div class="msg_history">
                                                 
-												<?php
-												if(isset($chatdata->CHAT) && count($chatdata->CHAT) >0) {
+												<div class="older_chat"></div>
 												
-													foreach($chatdata->CHAT as $c) { 
-												?>
-												
-														<?php
-														if($c->contactId !== $contactid) {
-														?>
-															<div class="ng-scope"> 
-															
-																<div class="incoming_msg ng-scope">
-																	<div class="incoming_msg_img"> 
-																		<img src="<?php echo $c->contactImage; ?>" onerror="this.src='{{ asset('public/img/profile-icon.png') }}';this.onerror='';">
-																	</div>
-																	<div class="received_msg">
-																		<div class="received_withd_msg">
-																			<p class="ng-binding"><?php echo $c->message; ?></p>
-																			<span class="time_date ng-binding"></span>
+												<div class="today_chat">
+													
+													<div style="border: 1px solid gray;background-color: #00bcd414;width: 46px;margin-left: 225px;margin-top: 10px;font-weight: 500;">Today</div>
+													
+													<?php
+													if(isset($todayChatData->CHAT) && count($todayChatData->CHAT) >0) {
+													
+														foreach($todayChatData->CHAT as $c) { 
+													?>
+															<?php
+															if($c->contactId !== $contactid) {
+															?>
+																<div class="ng-scope"> 
+																
+																	<div class="incoming_msg ng-scope">
+																		<div class="incoming_msg_img"> 
+																			<img src="<?php echo $c->contactImage; ?>" onerror="this.src='{{ asset('public/img/profile-icon.png') }}';this.onerror='';">
+																		</div>
+																		<div class="received_msg">
+																			<div class="received_withd_msg">
+																				<p class="ng-binding"><?php echo $c->message; ?></p>
+																				<span class="time_date ng-binding"></span>
+																			</div>
 																		</div>
 																	</div>
 																</div>
-															</div>
-														
-														<?php	
-														}
-														if($c->contactId == $contactid) {
-														?>
-															<div class="ng-scope"> 
-															   <div class="outgoing_msg ng-scope">
-																	<div class="sent_msg">
-																		<p class="ng-binding"><?php echo $c->message; ?></p>
-																		<span class="time_date ng-binding"></span> 
-																	</div>
-																	<div class="outgoing_msg_img"> 
-																		<img src="<?php echo $c->contactImage; ?>" onerror="this.src='{{ asset('public/img/profile-icon.png') }}';this.onerror='';">
+															
+															<?php	
+															}
+															if($c->contactId == $contactid) {
+															?>
+																<div class="ng-scope"> 
+																   <div class="outgoing_msg ng-scope">
+																		<div class="sent_msg">
+																			<p class="ng-binding"><?php echo $c->message; ?></p>
+																			<span class="time_date ng-binding"></span> 
+																		</div>
+																		<div class="outgoing_msg_img"> 
+																			<img src="<?php echo $c->contactImage; ?>" onerror="this.src='{{ asset('public/img/profile-icon.png') }}';this.onerror='';">
+																		</div>
 																	</div>
 																</div>
-															</div>
-														<?php		
-														}
-														?>
-												
-												<?php	
-													}
-												} else {
+															<?php		
+															}
+															?>
 													
-													echo '<div style="padding-left: 0px;">There are no activities available.</div>';
-												}
-												?>
+													<?php	
+														}
+													} else {
+														
+														echo '<div style="padding-left: 0px;">There are no activities available.</div>';
+													}
+													?>
+													
+												</div>
+												
+												
+												
+												
+												
                                                 
                                             </div>
                                             
                                         </div>
                                             <div class="type_msg">
                                                 <div class="input_msg_write">
-                                                    <input class="write_msg ng-pristine ng-untouched ng-valid" name="message" ng-model="message" placeholder="Type a message" type="text">
-                                                    <button class="msg_send_btn" ng-click="pushData();" type="button">send<i aria-hidden="true" class="fa fa-paper-plane-o"></i></button>
+                                                    <input class="write_msg" name="message" placeholder="Type a message" type="text">
+                                                    <button class="chat_send_btn msg_send_btn" type="button">send<i aria-hidden="true" class="fa fa-paper-plane-o"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -431,8 +447,129 @@ function showAttachments() {
     element.classList.add("slds-is-active");
 }       
 
+$(".chat_send_btn").click(function(e) { 
+	
+	$('.chat_send_btn').text('Loading...').attr('disabled', true);
+	
+	var enterMsg = $('.write_msg').val();
+	if(enterMsg.trim() === '') {
+		swal("Error", "Please Enter Message", "error");
+		return;
+	}
+	
+	var data = {
+	  'dealId'    : '<?php echo $dealId;  ?>',
+	  'contactId' : '<?php echo $contactid;  ?>',
+	  'message'   : enterMsg
+	}
+	
+	$.ajax({
+		url: "{{ url('/push-new-chat') }}",
+		type: 'POST',
+		dataType: 'json',
+		data: JSON.stringify(data),
+		contentType: 'application/json',
+		headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+		success: function (res) {
+		   
+		    if(res.status == 'success') {
+			   
+			    var senderImage = "{{ Session::get('AUTH_USER')['PROFILE_IMG'] }}";
+				var newMsgHtml = '<div class="ng-scope">'+ 
+								   '<div class="outgoing_msg ng-scope">'+
+										'<div class="sent_msg">'+
+											'<p class="ng-binding">'+enterMsg+'</p>'+
+											'<span class="time_date ng-binding"></span>'+
+										'</div>'+
+										'<div class="outgoing_msg_img">'+ 
+											'<img src="'+senderImage+'">'+
+										'</div>'+
+									'</div>'+
+								'</div>';
+						
+				$('.today_chat').append(newMsgHtml);
+		    
+			} else {
+				
+				swal("Error", "No record available", "error");
+			}
+		    $('.chat_send_btn').removeAttr("disabled").text("Send");
+			$('.write_msg').val('');
+			$(".msg_history").animate({scrollTop:9999 }, 'smooth');
+		},
+		error: function (error) { }
+	}); 
+	
+});
 
-
+$("#historyChat").click(function(e) {
+	
+	$('#historyChat').text('Loading...').attr('disabled', true);
+	
+    $.ajax({
+		url: "{{ url('/load-old-chat') }}"+"/"+'<?php echo $dealId; ?>',
+		type: 'GET',
+		dataType: 'json',
+		headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+		success: function (res) {
+		   
+			if(res && res.status == "success" && res.data.CHAT.length > 0){
+				
+				var html = '';
+				$.each(res.data.CHAT, function(i, d){
+					
+					if(d.contactId != res.contactid) {
+						
+						html += '<div class="ng-scope">'+ 
+									'<div class="incoming_msg ng-scope">'+
+										'<div class="incoming_msg_img">'+ 
+											'<img src="'+d.contactImage+'">'+
+										'</div>'+
+										'<div class="received_msg">'+
+											'<div class="received_withd_msg">'+
+												'<p class="ng-binding">'+d.message+'</p>'+
+												'<span class="time_date ng-binding"></span>'+
+											'</div>'+
+										'</div>'+
+									'</div>'+
+								'</div>';
+					
+					}
+					
+					if(d.contactId == res.contactid) {
+						
+						html += '<div class="ng-scope">'+ 
+								   '<div class="outgoing_msg ng-scope">'+
+										'<div class="sent_msg">'+
+											'<p class="ng-binding">'+d.message+'</p>'+
+											'<span class="time_date ng-binding"></span>'+
+										'</div>'+
+										'<div class="outgoing_msg_img">'+
+											'<img src="'+d.contactImage+'">'+
+										'</div>'+
+									'</div>'+
+								'</div>';
+					
+					}
+			
+				});
+				
+				$('.historyChatDiv').remove();
+				$('.msg_history .older_chat').prepend(html);
+				$(".msg_history").animate({scrollTop:0}, 'smooth');
+				$('.chatboxapp .panel-heading').text( $('.chatboxapp .panel-heading').text().trim() );
+			
+			} else {
+				
+				//$('#historyChat').removeAttr("disabled").text("Load Old Chat");
+				$('.historyChatDiv').remove();
+				swal("Error", "No record available", "error");
+			}
+		},
+		error: function (error) { }
+	});
+   
+});
 
 $('form#dealUpdateStatus').submit(function (e) { 
     var formbtn = "#dealUpdateStatus button[type=submit]";

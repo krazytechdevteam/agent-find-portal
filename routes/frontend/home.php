@@ -39,6 +39,9 @@ Route::group(['middleware' => ['chklogin']], function () {
 	
     Route::get('request-agent', [RequestAgentController::class, 'requestAgent'])->name('requestAgent');
     Route::post('request-agent-save', [RequestAgentController::class, 'requestAgentSave'])->name('requestAgentSave');
+    Route::get('load-old-chat/{dealId}', [DealController::class, 'loadOldChat'])->name('loadOldChat');
+    Route::post('push-new-chat', [DealController::class, 'pushNewChat'])->name('pushNewChat');
+   
 
 });
 /*
