@@ -55,7 +55,9 @@ class DealController extends Controller
     public function dealDetail(Request $request, $dealId) {
         
         $dealAttachment = array();
-        $data = array();
+        $data           = array();
+        $chatdata       = array();
+        $contactid = $request->session()->get('AUTH_USER')['ENROLLMENT_ID'];
 
         try {
 
@@ -69,6 +71,12 @@ class DealController extends Controller
             $attachmentUrl      = config('app.agentFindApiURL') . 'services/apexrest/LODealFiles/'.$dealId;
             $attachmentResponse = $client->get($attachmentUrl);
             $dealAttachment     = json_decode($attachmentResponse->getBody());
+
+            //GET THE CHAT HISTORY
+            $chatURL      = 'https://afnew-agentfind.cs97.force.com/AgentFind/services/apexrest/LOChat/'.$dealId;
+            $chatResponse = $client->get($chatURL);
+            $chatdata     = json_decode($chatResponse->getBody());
+
         
         } catch (\GuzzleHttp\Exception\ClientException $e) {
            
@@ -78,7 +86,7 @@ class DealController extends Controller
             $data     = 'Something went wrong.Please try agin !!!';
         }
 
-        return view('frontend.user.deal-detail', compact(['data', 'dealAttachment']));    
+        return view('frontend.user.deal-detail', compact(['data', 'dealAttachment', 'chatdata', 'contactid']));    
     }
 
     public function updateDealStatus(Request $request) {

@@ -283,57 +283,57 @@
                                     <div class="panel-body">
                                         <div class="mesgs">
                                             <div class="msg_history">
-                                                <div ng-show="activitiesNotFound" style="padding-left: 0px;" class="ng-hide">There are no activities available.</div>
                                                 
-                                                <!-- ngRepeat: activity in dealDetail['ACTIVITIES'] --><div ng-repeat="activity in dealDetail['ACTIVITIES']" class="ng-scope"> 
-                                                    <!-- ngIf: activity.Submitted_By__r.Id != dealDetail['CONTACTID'] --><div class="incoming_msg ng-scope" ng-if="activity.Submitted_By__r.Id != dealDetail['CONTACTID']">
-                                                        <div class="incoming_msg_img"> 
-                                            <img src="/AgentFind/servlet/servlet.ImageServer?oid=00Di0000000Yujy&amp;id=0150U0000000jyrQAA">
-                                                        </div>
-                                                        <div class="received_msg">
-                                                            <div class="received_withd_msg">
-                                                                <p class="ng-binding">test</p>
-                                                                <span class="time_date ng-binding"> 06 Dec, 2018 01:30</span></div>
-                                                        </div>
-                                                    </div><!-- end ngIf: activity.Submitted_By__r.Id != dealDetail['CONTACTID'] -->
-                                                    <!-- ngIf: activity.Submitted_By__r.Id == dealDetail['CONTACTID'] -->
-                                                </div><!-- end ngRepeat: activity in dealDetail['ACTIVITIES'] --><div ng-repeat="activity in dealDetail['ACTIVITIES']" class="ng-scope"> 
-                                                    <!-- ngIf: activity.Submitted_By__r.Id != dealDetail['CONTACTID'] --><div class="incoming_msg ng-scope" ng-if="activity.Submitted_By__r.Id != dealDetail['CONTACTID']">
-                                                        <div class="incoming_msg_img"> 
-                                            <img src="/AgentFind/servlet/servlet.ImageServer?oid=00Di0000000Yujy&amp;id=0150U0000000jyrQAA">
-                                                        </div>
-                                                        <div class="received_msg">
-                                                            <div class="received_withd_msg">
-                                                                <p class="ng-binding">test1112</p>
-                                                                <span class="time_date ng-binding"> 06 Dec, 2018 01:30</span></div>
-                                                        </div>
-                                                    </div><!-- end ngIf: activity.Submitted_By__r.Id != dealDetail['CONTACTID'] -->
-                                                    <!-- ngIf: activity.Submitted_By__r.Id == dealDetail['CONTACTID'] -->
-                                                </div><!-- end ngRepeat: activity in dealDetail['ACTIVITIES'] --><div ng-repeat="activity in dealDetail['ACTIVITIES']" class="ng-scope"> 
-                                                    <!-- ngIf: activity.Submitted_By__r.Id != dealDetail['CONTACTID'] -->
-                                                    <!-- ngIf: activity.Submitted_By__r.Id == dealDetail['CONTACTID'] --><div class="outgoing_msg ng-scope" ng-if="activity.Submitted_By__r.Id == dealDetail['CONTACTID']">
-                                                        <div class="sent_msg">
-                                                            <p class="ng-binding">aa</p>
-                                                            <span class="time_date ng-binding"> 11 Jun, 2019 04:25</span> 
-                                                        </div>
-                                                        <div class="outgoing_msg_img"> 
-                                            <img src="/AgentFind/servlet/servlet.ImageServer?oid=00Di0000000Yujy&amp;id=0150U0000000kEpQAI">
-                                            
-                                                        </div>
-                                                    </div><!-- end ngIf: activity.Submitted_By__r.Id == dealDetail['CONTACTID'] -->
-                                                </div><!-- end ngRepeat: activity in dealDetail['ACTIVITIES'] --><div ng-repeat="activity in dealDetail['ACTIVITIES']" class="ng-scope"> 
-                                                    <!-- ngIf: activity.Submitted_By__r.Id != dealDetail['CONTACTID'] -->
-                                                    <!-- ngIf: activity.Submitted_By__r.Id == dealDetail['CONTACTID'] --><div class="outgoing_msg ng-scope" ng-if="activity.Submitted_By__r.Id == dealDetail['CONTACTID']">
-                                                        <div class="sent_msg">
-                                                            <p class="ng-binding">hi</p>
-                                                            <span class="time_date ng-binding"> 28 Mar, 2020 10:17</span> 
-                                                        </div>
-                                                        <div class="outgoing_msg_img"> 
-                                            <img src="/AgentFind/servlet/servlet.ImageServer?oid=00Di0000000Yujy&amp;id=0150U0000000kEpQAI">
-                                            
-                                                        </div>
-                                                    </div><!-- end ngIf: activity.Submitted_By__r.Id == dealDetail['CONTACTID'] -->
-                                                </div><!-- end ngRepeat: activity in dealDetail['ACTIVITIES'] -->
+												<?php
+												if(isset($chatdata->CHAT) && count($chatdata->CHAT) >0) {
+												
+													foreach($chatdata->CHAT as $c) { 
+												?>
+												
+														<?php
+														if($c->contactId !== $contactid) {
+														?>
+															<div class="ng-scope"> 
+															
+																<div class="incoming_msg ng-scope">
+																	<div class="incoming_msg_img"> 
+																		<img src="<?php echo $c->contactImage; ?>" onerror="this.src='{{ asset('public/img/profile-icon.png') }}';this.onerror='';">
+																	</div>
+																	<div class="received_msg">
+																		<div class="received_withd_msg">
+																			<p class="ng-binding"><?php echo $c->message; ?></p>
+																			<span class="time_date ng-binding"></span>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														
+														<?php	
+														}
+														if($c->contactId == $contactid) {
+														?>
+															<div class="ng-scope"> 
+															   <div class="outgoing_msg ng-scope">
+																	<div class="sent_msg">
+																		<p class="ng-binding"><?php echo $c->message; ?></p>
+																		<span class="time_date ng-binding"></span> 
+																	</div>
+																	<div class="outgoing_msg_img"> 
+																		<img src="<?php echo $c->contactImage; ?>" onerror="this.src='{{ asset('public/img/profile-icon.png') }}';this.onerror='';">
+																	</div>
+																</div>
+															</div>
+														<?php		
+														}
+														?>
+												
+												<?php	
+													}
+												} else {
+													
+													echo '<div style="padding-left: 0px;">There are no activities available.</div>';
+												}
+												?>
                                                 
                                             </div>
                                             
