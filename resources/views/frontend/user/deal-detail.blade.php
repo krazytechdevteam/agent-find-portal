@@ -233,10 +233,11 @@
                                         <div class="panel-heading">Attachment
                                             <div class="uploadfile">
                                                 <span>Upload File</span>
-												<form method="post" action="<?php echo url('/') . '/upload-deal-attachment'; ?>" enctype="multipart/form-data">
+												<form id="attachmentForm" method="post" action="<?php echo url('/') . '/upload-deal-attachment'; ?>" enctype="multipart/form-data">
 													 {{ csrf_field() }}
 													 <input type="hidden" name="deal_id" value="<?php echo $data->DEAL_ID; ?>"/>
-													<input name="deal_upload" type="file" onchange="javascript:this.form.submit();">
+													<!--<input name="deal_upload" type="file" onchange="javascript:this.form.submit();">-->
+													<input name="deal_upload" id="attachmentBtn" type="file">
 												</form>
                                                 
                                             </div>
@@ -446,6 +447,15 @@ function showAttachments() {
     element = document.getElementById("attachmentTab");
     element.classList.add("slds-is-active");
 }       
+
+$('#attachmentBtn').change(function (e) {
+    
+	document.getElementById("attachmentForm").submit();
+	$('.uploadfile span').text('Loading...');
+	$('.uploadfile').css("background", "gray")
+	$('#attachmentBtn').attr('disabled', true);
+	
+});
 
 $(".chat_send_btn").click(function(e) { 
 	
