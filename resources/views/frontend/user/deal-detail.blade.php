@@ -85,7 +85,7 @@
                     <a href="javascript: updateStatusDialog();">
                         <span class="fa fa-anchor solo">Update Status</span>
                     </a>
-					<form method="post" action="<?php echo url('/') . '/update-deal-status'; ?>">
+					<form id="dealUpdateStatus" method="post" action="<?php echo url('/') . '/update-deal-status'; ?>">
 						 {{ csrf_field() }}
 						<div class="slideup" style="text-align: center; display: none;">
 							<input type="hidden" name="deal_id" value="<?php echo $data->DEAL_ID; ?>"/>
@@ -95,7 +95,7 @@
 								<option value="Dead">Dead</option>
 								<option value="No Communication with Buyer">No Communication with Buyer</option>
 							</select><br>
-							<input class="msg_send_btn" id="updateStatus" style="height: 40px;" type="submit" value="Update">
+						    <button class="msg_send_btn" id="updateStatus" style="height: 40px;" type="submit">Update</button>
 						</div>
 					</form>
                     
@@ -431,6 +431,14 @@ function showAttachments() {
     element.classList.add("slds-is-active");
 }       
 
+
+
+
+$('form#dealUpdateStatus').submit(function (e) { 
+    var formbtn = "#dealUpdateStatus button[type=submit]";
+    $(formbtn).text('Loading...').attr('disabled', true);
+});
+    
 /*Menu-toggle*/
 $("#menu-toggle").click(function(e) {
     e.preventDefault();
