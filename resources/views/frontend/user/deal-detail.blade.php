@@ -282,7 +282,7 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">Chatter 
 										<div class="historyChatDiv" style="text-align:center; margin-top:-28px">
-											<button class="btn btn-primary btn-xs" id="historyChat" type="button">Load Old Chat</button>
+											<button class="btn btn-primary btn-xs" id="historyChat" type="button">Load Previous History</button>
 										</div>
 									</div>
                                     <div class="panel-body">
@@ -293,7 +293,7 @@
 												
 												<div class="today_chat">
 													
-													<div style="border: 1px solid gray;background-color: #00bcd414;width: 46px;margin-left: 225px;margin-top: 10px;font-weight: 500;">Today</div>
+													<div style="border: 1px solid gray;background-color: #00bcd414;width: 120px;margin: 0 auto;padding: 1px 10px 0 10px; text-align: center;"><?php echo date('d M, Y'); ?></div>
 													
 													<?php
 													if(isset($todayChatData->CHAT) && count($todayChatData->CHAT) >0) {
@@ -339,10 +339,7 @@
 													
 													<?php	
 														}
-													} else {
-														
-														echo '<div style="padding-left: 0px;">There are no activities available.</div>';
-													}
+													} 
 													?>
 													
 												</div>
