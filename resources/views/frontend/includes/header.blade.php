@@ -10,7 +10,7 @@
           </button>
           <div>
             <a class="navbar-brand" href="<?php echo url('/') . '/dashboard'; ?>">
-              <img alt="dashboard-logo" src="{{asset('public/img/logo-dashboard.png')}}" />
+              <img alt="dashboard-logo" src="{{asset('public/img/loginlogo.png')}}" />
             </a>
           </div>
         </div>

@@ -314,7 +314,7 @@ text-decoration: none;
 .all-listnotification{
       max-height: 300px;
       min-height: 300px;
-      overflow: hidden scroll;
+      overflow: hidden auto;
 }
 .notification-image img{
     width: 50px;
