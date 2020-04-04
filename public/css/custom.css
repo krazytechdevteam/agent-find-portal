@@ -3,23 +3,23 @@
  */
 @font-face{
   font-family: 'proxima nova regular';
-  src:url('font/proxima-nova-regular-webfont.ttf');
-  src:url('font/proxima-nova-regular-webfont.ttf') format('truetype');
+  src:url('../fonts/proxima-nova-regular-webfont.ttf');
+  src:url('../fonts/proxima-nova-regular-webfont.ttf') format('truetype');
 }
 @font-face{
   font-family: 'proxima nova thin'; 
-  src:url('font/proxima-nova-thin-webfont.ttf');
-  src:url('font/proxima-nova-thin-webfont.ttf') format('truetype');
+  src:url('../fonts/proxima-nova-thin-webfont.ttf');
+  src:url('../fonts/proxima-nova-thin-webfont.ttf') format('truetype');
 }
 @font-face{
   font-family: 'proxima nova bold';
-  src:url('font/proxima-nova-bold-webfont.ttf');
-  src:url('font/proxima-nova-bold-webfont.ttf') format('truetype');
+  src:url('../fonts/proxima-nova-bold-webfont.ttf');
+  src:url('../fonts/proxima-nova-bold-webfont.ttf') format('truetype');
 }
 @font-face{
   font-family: 'proxima nova semibold'; 
-  src:url('font/proxima-nova-semibold-webfont.ttf');
-  src:url('font/proxima-nova-semibold-webfont.ttf') format('truetype');
+  src:url('../fonts/proxima-nova-semibold-webfont.ttf');
+  src:url('../fonts/proxima-nova-semibold-webfont.ttf') format('truetype');
 }
 
 
