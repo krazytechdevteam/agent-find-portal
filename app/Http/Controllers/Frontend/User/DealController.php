@@ -88,6 +88,49 @@ class DealController extends Controller
         return view('frontend.user.deal-detail', compact(['data', 'dealAttachment', 'todayChatData', 'contactid', 'dealId']));    
     }
 
+
+    private function callCurlRequest($reqData, $type, $header, $url) {
+
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+          CURLOPT_URL            => $url,
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING       => "",
+          CURLOPT_MAXREDIRS      => 10,
+          CURLOPT_TIMEOUT        => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST  => $type,
+          CURLOPT_POSTFIELDS     => json_encode($reqData),
+          CURLOPT_HTTPHEADER     => $header,
+        ));
+
+        $response = json_decode(curl_exec($curl));
+        return $response;
+    }
+
+    public function getFavoriteProperty(Request $request) {
+
+        $domainName = config('app.favApiDetaiis')['domainName'];
+        $userName   = config('app.favApiDetaiis')['userName'];
+        $password   = config('app.favApiDetaiis')['password'];
+
+        //GET AUTHENTICATION TOKEN
+        $reqData    = array('email' => $userName, 'password' => $password);
+        $header     = array("Content-Type: application/json");
+        $url        = $domainName."/api/v1/login";
+        $response   = $this->callCurlRequest($reqData, 'POST', $header, $url);
+
+        //GET FAVORITE PROPERTY
+        $favUrl     = $domainName."/api/v1/getUserFavorites";
+        $favHeader  = array("Authorization: Bearer " . $response->access_token, "Content-Type: application/json");
+        $favReqData = array('sortBy' => "area", "sortOrder" => "desc", "pageNum" => 0, "perPage" => 100);
+        $favResult  = $this->callCurlRequest($favReqData, 'POST', $favHeader, $favUrl);
+
+        $status     = 'success';
+        return response()->json(['status' => $status, 'data' => $favResult, 'domainName' => $domainName]);
+    }
+
     public function pushNewChat(Request $request) {
 
         $param              = array();

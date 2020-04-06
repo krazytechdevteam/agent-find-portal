@@ -367,60 +367,25 @@
                     <div class="row" style="display: block;">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                            
                             <div class="panel panel-default" id="favprop-sec">
-                                <div class="panel-heading"><h4 class="ng-binding">Favorites (0)</h4></div>
+                                <div class="panel-heading"><h4></h4></div>
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                                            <span class="text-light-gray ng-binding">0 homes</span>
+                                            <span class="text-light-gray"></span>
                                         </div>
                                         <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12 text-total text-right">
                                             
                                         </div>
                                     </div>
-                                    <div class="row m-t-30">
+                                    <div class="fav-property" class="row m-t-30">
                                         <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
                                             <div class="map-view">
-                                                <div id="googleMap" style="width:100%;height:400px;"></div>
+                                                <div id="mapid" style="width:100%;height:400px;"></div>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
                                             <div class="favorite-list">
-                                                <ul class="media-list main-list">
-                                                    
-                                                    <!--
-                                                    <li ng-repeat="fav in dealDetail['FAVORITES']" class="media"> 
-                                                            <div style="border: 1px solid #ececec;float: left;margin-right: 10px;padding: 4px;">
-                                                            <a class="pull-left" href="{{fav.URL__c}}" target="_blank">
-                                                                <img src="{{fav.Images__c}}" class="media-object " alt="No Image Available" title="" border="0" /> 
-                                                            </a>
-                                                            </div>
-                                                            <div class="media-body">
-                                                                <div class="row">
-                                                                    <div class="col-md-8">
-                                                                        <a href="{{fav.URL__c}}" target="_blank">
-                                                                        {{fav.Address__c}}
-                                                                        </a> <br/>
-                                                                        <span class="text-light-gray">{{fav.Mlsnum__c}}</span>
-                                                                    </div>
-                                                                    <div class="col-md-4 text-right">
-                                                                    <span>{{fav.Price__c | currency}}</span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-md-5"><span class="text-light-gray">
-                                                                    <span class="glyphicon glyphicon-heart"></span>
-                                                                    {{fav.FavMarkedAt__c}}</span></div>
-                                                                    <div class="col-md-7 text-right">
-                                                                        <span>{{fav.Beds__c}} Beds</span> | 
-                                                                        <span>{{fav.Baths__c}} baths</span> |
-                                                                        <span>{{fav.Sqft__c}} sqft</span>
-                                                                    </div>
-                                                                </div>          
-                                                            </div>
-                                                        </li>
-                                                    -->
-                                                   
-                                                    <!--<li ng-show="favoritesNotFound" class="">There is no sites available.</li> -->
+                                                <ul class="media-list main-list" id="fav_list">
                                                 </ul>
                                             </div>
                                         </div>
@@ -434,11 +399,137 @@
             </div>
         </div>
     </div>
-
 @endsection
 
+
+@push('after-styles')
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />   
+@endpush
+
 @push('after-scripts')
+<!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+   crossorigin=""></script>
+
+
+<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
 <script type="text/javascript">
+	
+Number.prototype.formatMoney = function(c, d, t){
+    var n = this, 
+    c = isNaN(c = Math.abs(c)) ? 2 : c, 
+    d = d == undefined ? "." : d, 
+    t = t == undefined ? "," : t, 
+    s = n < 0 ? "-" : "", 
+    i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))), 
+    j = (j = i.length) > 3 ? j % 3 : 0;
+    return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t);
+};
+Number.prototype.formatArea = function(t){
+    var n = this, 
+    t = t == undefined ? "," : t, 
+    s = n < 0 ? "-" : "", 
+    i = String(parseInt(n = Math.abs(Number(n) || 0))), 
+    j = (j = i.length) > 3 ? j % 3 : 0;
+    return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t);
+};
+getUserFavorites();
+function getUserFavorites() {
+	
+	$.ajax({
+		url: "{{ url('/get-fav-property') }}",
+		type: 'GET',
+		dataType: 'json',
+		contentType: 'application/json',
+		headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+		success: function (res) {
+			
+			$('#favprop-sec h4').text('Favorites (' + res.data.data.length + ')');
+		    if(res && res.status == "success" && res.data.data.length > 0){
+				
+				var mapCenter = [33.753746, -84.386330];
+				var mymap = L.map('mapid').setView(mapCenter, 13);
+				L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2FuamF5MjM5MCIsImEiOiJjazhvYnV5MjAwNmxjM2Ztamo4ZXh3bzkyIn0.4swDk-cHJxhaD2uoZwwGlg', {
+					maxZoom: 15,
+					attribution: '',
+					id: 'mapbox/streets-v11',
+					tileSize: 512,
+					zoomOffset: -1
+				}).addTo(mymap);
+	
+				var html = '';
+				$.each(res.data.data, function(i, d){
+					
+					var propertyStructure = [];
+					propertyStructure.push(d.bedrooms + ' Beds');
+					propertyStructure.push(d.bathrooms + ' Baths');
+					propertyStructure.push(d.area.formatArea(",") + ' Sq. Ft.');
+					var propertyDetailUrl = res.domainName + '/details/' + d.id;
+					
+					////////////////////////////////////////////////////////////
+					
+					if(d.latitude && d.longitude){
+						
+						L.marker([d.latitude, d.longitude])
+						.addTo(mymap)
+						.bindPopup('<b>' + d.addressLineOne + "<br>" + d.addressLineTwo + '<br>' + '$' + d.price.formatMoney(2, ".", ",") + '</b>');
+						
+						/* var popup = L.popup();
+						var marker = L.marker([d.latitude, d.longitude], {clickUrl: propertyDetailUrl})
+									.addTo(mymap)
+									.on('mouseover', function(e){
+										popup.setLatLng(e.latlng).setContent(d.addressLineOne + "<br>" + d.addressLineTwo + '<br>' + d.price).openOn(mymap);
+									})
+									.on('mouseout', function(e){
+										mymap.closePopup()
+									}) */
+					}
+			
+												
+					html += '<li class="media" style="border: 1px solid #80808036; padding:5px; border-radius:10px">'+ 
+							'<div style="border: 1px solid #ececec;float: left;margin-right: 10px;padding: 0px;">'+
+							'<a class="pull-left" href="'+propertyDetailUrl+'" target="_blank">'+
+								'<img src="'+d.photoUrl+'" class="media-object" border="0" />'+
+							'</a>'+
+							'</div>'+
+							'<div class="media-body">'+
+								'<div class="row">'+
+									'<div class="col-md-8">'+
+										'<a href="'+propertyDetailUrl+'" target="_blank">'+d.addressLineOne+'</a><br/>'+
+										'<span class="text-light-gray">'+d.addressLineTwo+'</span>'+
+									'</div>'+
+									'<div style="font-size: 18px;" class="col-md-4 text-left">'+
+									'<span>'+d.price.formatMoney(2, ".", ",")+'</span>'+
+									'</div>'+
+								'</div>'+
+								'<div class="row">'+
+									'<div class="col-md-12 text-left">'+
+										'<span>'+propertyStructure.join(" | ")+'</span><br>'+
+										'<span style="color:red">'+
+										'<span class="glyphicon glyphicon-heart"></span>'+
+									'</div>'+
+								'</div>'+       
+							'</div>'+
+						'</li>';
+				})
+				$('#fav_list').html(html);
+		    } else {
+				$('.fav-property').html('<div style="text-align: center;font-size: 20px;color: gray; padding: 15px;">No Record Found</div>');
+			}  
+		},
+		error: function (error) { 
+			$('.fav-property').html('<div style="text-align: center;font-size: 20px;color: gray; padding: 15px;">Favorite Loading Failed !!!</div>');
+		}
+	});
+}
+
+
 var locations = [];
 
 function showActivity() {
@@ -636,6 +727,8 @@ function myMap() {
 
 $('span.stars').stars();
 
+
+/* 
 setTimeout(function(){ 
 
     initMap(locations)
@@ -668,7 +761,7 @@ var markers = locations.map(function(location, i) {
   
 // Add a marker clusterer to manage the markers.
 var markerCluster = new MarkerClusterer(map, markers, clusterOptions);
-}
+} */
 
 function updateStatusDialog() {
     
