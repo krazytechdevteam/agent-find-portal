@@ -380,40 +380,39 @@
                                     <div class="row m-t-30">
                                         <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
                                             <div class="map-view">
-                                                <div id="googleMap" style="width:100%;height:400px;"></div>
+                                                <div id="googleMap" style="width: 100%; height: 400px; position: relative; overflow: hidden;"><div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);"><div style="overflow: hidden;"></div><div class="gm-style" style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px;"><div tabindex="0" style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;), default; touch-action: pan-x pan-y;"><div style="z-index: 1; position: absolute; left: 50%; top: 50%; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"></div></div><div class="gm-style-pbc" style="z-index: 2; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; opacity: 0;"><p class="gm-style-pbt"></p></div><div style="z-index: 3; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; touch-action: pan-x pan-y;"><div style="z-index: 4; position: absolute; left: 50%; top: 50%; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;"></div></div></div></div><iframe aria-hidden="true" frameborder="0" tabindex="-1" style="z-index: -1; position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; border: none;"></iframe></div></div></div>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
                                             <div class="favorite-list">
                                                 <ul class="media-list main-list">
-                                                    
                                                     <!--
-                                                    <li ng-repeat="fav in dealDetail['FAVORITES']" class="media"> 
+                                                    <li class="media"> 
                                                             <div style="border: 1px solid #ececec;float: left;margin-right: 10px;padding: 4px;">
-                                                            <a class="pull-left" href="{{fav.URL__c}}" target="_blank">
-                                                                <img src="{{fav.Images__c}}" class="media-object " alt="No Image Available" title="" border="0" /> 
+                                                            <a class="pull-left" href="URL" target="_blank">
+                                                                <img src="" class="media-object " alt="No Image Available" title="" border="0" /> 
                                                             </a>
                                                             </div>
                                                             <div class="media-body">
                                                                 <div class="row">
                                                                     <div class="col-md-8">
-                                                                        <a href="{{fav.URL__c}}" target="_blank">
-                                                                        {{fav.Address__c}}
+                                                                        <a href="URL" target="_blank">
+                                                                        Address
                                                                         </a> <br/>
-                                                                        <span class="text-light-gray">{{fav.Mlsnum__c}}</span>
+                                                                        <span class="text-light-gray">Mlsnum</span>
                                                                     </div>
                                                                     <div class="col-md-4 text-right">
-                                                                    <span>{{fav.Price__c | currency}}</span>
+                                                                    <span>Price</span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-md-5"><span class="text-light-gray">
                                                                     <span class="glyphicon glyphicon-heart"></span>
-                                                                    {{fav.FavMarkedAt__c}}</span></div>
+                                                                    favMarkedAt</span></div>
                                                                     <div class="col-md-7 text-right">
-                                                                        <span>{{fav.Beds__c}} Beds</span> | 
-                                                                        <span>{{fav.Baths__c}} baths</span> |
-                                                                        <span>{{fav.Sqft__c}} sqft</span>
+                                                                        <span>0 Beds</span> | 
+                                                                        <span>0 baths</span> |
+                                                                        <span>0 sqft</span>
                                                                     </div>
                                                                 </div>          
                                                             </div>
