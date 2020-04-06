@@ -381,11 +381,14 @@
                                         <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
                                             <div class="map-view">
                                                 <div id="mapid" style="width:100%;height:400px;"></div>
+
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
                                             <div class="favorite-list">
+
                                                 <ul class="media-list main-list" id="fav_list">
+
                                                 </ul>
                                             </div>
                                         </div>
