@@ -16,7 +16,7 @@
        
         @stack('before-styles')
 
-        <link href="{{asset('public/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">        
+        <link href="{{asset('public/css/bootstrap.css')}}" rel="stylesheet" type="text/css">        
         <link href="{{asset('public/css/sweetalert.min.css')}}" rel="stylesheet" type="text/css">
         <link href="{{asset('public/css/custom.css')}}" rel="stylesheet" type="text/css">
         <link href="{{asset('public/css/frontend.css')}}" rel="stylesheet" type="text/css">
