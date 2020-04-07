@@ -466,7 +466,7 @@ function getUserFavorites() {
 										'<span class="text-light-gray">'+d.addressLineTwo+'</span>'+
 									'</div>'+
 									'<div style="font-size: 18px;" class="col-md-4 text-left">'+
-									'<span>'+d.price.formatMoney(2, ".", ",")+'</span>'+
+									'<span>$'+d.price.formatMoney(2, ".", ",")+'</span>'+
 									'</div>'+
 								'</div>'+
 								'<div class="row">'+
