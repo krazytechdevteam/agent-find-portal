@@ -290,64 +290,8 @@
                                                 
 												<div class="older_chat"></div>
 												
-												<div class="today_chat">
-													
-													<div style="border: 1px solid gray;background-color: #00bcd414;width: 120px;margin: 0 auto;padding: 1px 10px 0 10px; text-align: center;"><?php echo date('d M, Y'); ?></div>
-													
-													<?php
-													if(isset($todayChatData->CHAT) && count($todayChatData->CHAT) >0) {
-													
-														foreach($todayChatData->CHAT as $c) { 
-													?>
-															<?php
-															if($c->contactId !== $contactid) {
-															?>
-																<div class="ng-scope"> 
-																
-																	<div class="incoming_msg ng-scope">
-																		<div class="incoming_msg_img"> 
-																			<img src="<?php echo $c->contactImage; ?>" onerror="this.src='{{ asset('public/img/profile-icon.png') }}';this.onerror='';">
-																		</div>
-																		<div class="received_msg">
-																			<div class="received_withd_msg">
-																				<p class="ng-binding"><?php echo $c->message; ?></p>
-																				<span class="time_date ng-binding"></span>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															
-															<?php	
-															}
-															if($c->contactId == $contactid) {
-															?>
-																<div class="ng-scope"> 
-																   <div class="outgoing_msg ng-scope">
-																		<div class="sent_msg">
-																			<p class="ng-binding"><?php echo $c->message; ?></p>
-																			<span class="time_date ng-binding"></span> 
-																		</div>
-																		<div class="outgoing_msg_img"> 
-																			<img src="<?php echo $c->contactImage; ?>" onerror="this.src='{{ asset('public/img/profile-icon.png') }}';this.onerror='';">
-																		</div>
-																	</div>
-																</div>
-															<?php		
-															}
-															?>
-													
-													<?php	
-														}
-													} 
-													?>
-													
-												</div>
-												
-												
-												
-												
-												
-                                                
+												<div class="today_chat"></div>
+												 
                                             </div>
                                             
                                         </div>
@@ -593,6 +537,87 @@ $('#attachmentBtn').change(function (e) {
 	
 });
 
+
+function constructChatHtml(res) {
+	
+	var html = '';
+	$.each(res.data.CHAT, function(i, d){
+		
+		if(d.contactId != res.contactid) {
+			
+			html += '<div class="ng-scope">'+ 
+						'<div class="incoming_msg ng-scope">'+
+							'<div class="incoming_msg_img">'+ 
+								'<img src="'+d.contactImage+'">'+
+							'</div>'+
+							'<div class="received_msg">'+
+								'<div class="received_withd_msg">'+
+									'<p class="ng-binding">'+d.message+'</p>'+
+									'<span class="time_date ng-binding"></span>'+
+								'</div>'+
+							'</div>'+
+						'</div>'+
+					'</div>';
+		
+		}
+		
+		if(d.contactId == res.contactid) {
+			
+			html += '<div class="ng-scope">'+ 
+					   '<div class="outgoing_msg ng-scope">'+
+							'<div class="sent_msg">'+
+								'<p class="ng-binding">'+d.message+'</p>'+
+								'<span class="time_date ng-binding"></span>'+
+							'</div>'+
+							'<div class="outgoing_msg_img">'+
+								'<img src="'+d.contactImage+'">'+
+							'</div>'+
+						'</div>'+
+					'</div>';
+		
+		}
+
+	});
+	
+	return html;
+}
+
+
+loadTodayChatHistory();
+
+function loadTodayChatHistory() {
+	
+	var data = {
+	  'dealId'    : '<?php echo $dealId;  ?>',
+	  'contactId' : '<?php echo $contactid;  ?>'
+	}
+	
+	$.ajax({
+		url: "{{ url('/load-today-chat') }}",
+		type: 'POST',
+		dataType: 'json',
+		data: JSON.stringify(data),
+		contentType: 'application/json',
+		headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+		success: function (res) {
+		   
+		    if(res && res.status == "success" && res.data.CHAT.length > 0){
+				
+				var today = "<?php echo date('d M, Y'); ?>";
+				
+				var html  = '<div style="border: 1px solid gray;background-color: #00bcd414;width: 120px;margin: 0 auto;padding: 1px 10px 0 10px; text-align: center;">'+today+'</div>';
+				html  += constructChatHtml(res);
+				
+				$('.today_chat').empty();
+				$('.today_chat').html(html);
+				$(".msg_history").animate({scrollTop:9999 }, 'smooth');
+	
+			}
+		},
+		error: function (error) { }
+	});
+}
+
 $(".chat_send_btn").click(function(e) { 
 	
 	$('.chat_send_btn').text('Loading...').attr('disabled', true);
@@ -620,7 +645,8 @@ $(".chat_send_btn").click(function(e) {
 		   
 		    if(res.status == 'success') {
 			   
-			    var senderImage = "{{ Session::get('AUTH_USER')['PROFILE_IMG'] }}";
+			    loadTodayChatHistory();
+			    /* var senderImage = "{{ Session::get('AUTH_USER')['PROFILE_IMG'] }}";
 				var newMsgHtml = '<div class="ng-scope">'+ 
 								   '<div class="outgoing_msg ng-scope">'+
 										'<div class="sent_msg">'+
@@ -633,11 +659,11 @@ $(".chat_send_btn").click(function(e) {
 									'</div>'+
 								'</div>';
 						
-				$('.today_chat').append(newMsgHtml);
+				$('.today_chat').append(newMsgHtml); */
 		    
 			} else {
 				
-				swal("Error", "No record available", "error");
+				swal("Error", "Something Went Wrong.Plz Try Agin !!!", "error");
 			}
 		    $('.chat_send_btn').removeAttr("disabled").text("Send");
 			$('.write_msg').val('');
@@ -661,45 +687,7 @@ $("#historyChat").click(function(e) {
 		   
 			if(res && res.status == "success" && res.data.CHAT.length > 0){
 				
-				var html = '';
-				$.each(res.data.CHAT, function(i, d){
-					
-					if(d.contactId != res.contactid) {
-						
-						html += '<div class="ng-scope">'+ 
-									'<div class="incoming_msg ng-scope">'+
-										'<div class="incoming_msg_img">'+ 
-											'<img src="'+d.contactImage+'">'+
-										'</div>'+
-										'<div class="received_msg">'+
-											'<div class="received_withd_msg">'+
-												'<p class="ng-binding">'+d.message+'</p>'+
-												'<span class="time_date ng-binding"></span>'+
-											'</div>'+
-										'</div>'+
-									'</div>'+
-								'</div>';
-					
-					}
-					
-					if(d.contactId == res.contactid) {
-						
-						html += '<div class="ng-scope">'+ 
-								   '<div class="outgoing_msg ng-scope">'+
-										'<div class="sent_msg">'+
-											'<p class="ng-binding">'+d.message+'</p>'+
-											'<span class="time_date ng-binding"></span>'+
-										'</div>'+
-										'<div class="outgoing_msg_img">'+
-											'<img src="'+d.contactImage+'">'+
-										'</div>'+
-									'</div>'+
-								'</div>';
-					
-					}
-			
-				});
-				
+				var html = constructChatHtml(res);
 				$('.historyChatDiv').remove();
 				$('.msg_history .older_chat').prepend(html);
 				$(".msg_history").animate({scrollTop:0}, 'smooth');
