@@ -41,6 +41,7 @@ Route::group(['middleware' => ['chklogin']], function () {
     Route::post('request-agent-save', [RequestAgentController::class, 'requestAgentSave'])->name('requestAgentSave');
     Route::get('load-old-chat/{dealId}', [DealController::class, 'loadOldChat'])->name('loadOldChat');
     Route::post('push-new-chat', [DealController::class, 'pushNewChat'])->name('pushNewChat');
+    Route::post('load-today-chat', [DealController::class, 'loadTodayChat'])->name('loadTodayChat');
    Route::post('get-fav-property', [DealController::class, 'getFavoriteProperty'])->name('getFavoriteProperty');
 
 });

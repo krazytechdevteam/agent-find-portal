@@ -73,9 +73,9 @@ class DealController extends Controller
             $dealAttachment     = json_decode($attachmentResponse->getBody());
 
             //GET THE CHAT OF TODAY 
-            $todayChatURL      = 'https://afnew-agentfind.cs97.force.com/AgentFind/services/apexrest/LOAgentChat/'.$dealId;
+           /* $todayChatURL      = 'https://afnew-agentfind.cs97.force.com/AgentFind/services/apexrest/LOAgentChat/'.$dealId;
             $todayChatResponse = $client->get($todayChatURL);
-            $todayChatData     = json_decode($todayChatResponse->getBody());
+            $todayChatData     = json_decode($todayChatResponse->getBody());*/
 
         } catch (\GuzzleHttp\Exception\ClientException $e) {
            
@@ -165,6 +165,34 @@ class DealController extends Controller
 
         return response()->json(['status' => $status]);
     }
+
+
+    public function loadTodayChat(Request $request) {
+
+        $data   = array();
+        $dealId = $request->dealId;
+        $contactid = $request->session()->get('AUTH_USER')['ENROLLMENT_ID'];
+
+        try {
+
+            $todayChatURL      = config('app.agentFindApiURL') . 'services/apexrest/LOAgentChat/'.$dealId;
+            $client            = new \GuzzleHttp\Client();
+            $todayChatResponse = $client->get($todayChatURL);
+            $data              = json_decode($todayChatResponse->getBody());
+            $status            = 'success';
+
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+           
+            $response = $e->getResponse();
+            $result   = json_decode($response->getBody());
+            $status   = 'error';
+            $data     = 'Something went wrong.Please try agin !!!';
+        }
+
+        return response()->json(['status' => $status, 'data' => $data, 'contactid' => $contactid]);
+
+    }
+
 
 
     public function loadOldChat(Request $request, $dealId) {
