@@ -618,6 +618,15 @@ function loadTodayChatHistory() {
 	});
 }
 
+$('.write_msg').keypress(function (e) { 
+	var key = e.which;
+	if(key == 13)  
+	{
+		$('.chat_send_btn').click();
+		return false;  
+	}
+});
+
 $(".chat_send_btn").click(function(e) { 
 	
 	$('.chat_send_btn').text('Loading...').attr('disabled', true);
