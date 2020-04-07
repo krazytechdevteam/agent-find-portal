@@ -156,10 +156,6 @@ return [
 
     'agentFindApiURL' => 'https://afnew-agentfind.cs97.force.com/AgentFind/',
 
-    'favApiDetaiis' => array('domainName' => 'https://nesthawk.com/',
-                             'userName'   => 'dassanjay0130@gmail.com',
-                             'password'   => 'password',
-                           ),
 
     /*
     |--------------------------------------------------------------------------

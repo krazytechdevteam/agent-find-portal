@@ -445,16 +445,30 @@ Number.prototype.formatArea = function(t){
 getUserFavorites();
 function getUserFavorites() {
 	
+	var data = {
+				'URL' : '<?php echo $data->URL; ?>',
+				'USERNAME' : '<?php echo $data->USERNAME; ?>',
+				'PASSWORD' : '<?php echo $data->PASSWORD; ?>',
+				
+	           };
+	
 	$.ajax({
 		url: "{{ url('/get-fav-property') }}",
-		type: 'GET',
+		type: 'POST',
 		dataType: 'json',
+		data: JSON.stringify(data),
 		contentType: 'application/json',
 		headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
 		success: function (res) {
 			
-			$('#favprop-sec h4').text('Favorites (' + res.data.data.length + ')');
+			if(res && res.status == "error") {
+				$('.fav-property').html('<div style="text-align: center;font-size: 20px;color: gray; padding: 15px;">Something went wrong on loading favorite property !!!</div>');
+				return;
+			}
+			
 		    if(res && res.status == "success" && res.data.data.length > 0){
+				
+				$('#favprop-sec h4').text('Favorites (' + res.data.data.length + ')');
 				
 				var mapCenter = [33.753746, -84.386330];
 				var mymap = L.map('mapid').setView(mapCenter, 13);
@@ -527,7 +541,7 @@ function getUserFavorites() {
 			}  
 		},
 		error: function (error) { 
-			$('.fav-property').html('<div style="text-align: center;font-size: 20px;color: gray; padding: 15px;">Favorite Loading Failed !!!</div>');
+			$('.fav-property').html('<div style="text-align: center;font-size: 20px;color: gray; padding: 15px;">Something went wrong on loading favorite property !!!</div>');
 		}
 	});
 }

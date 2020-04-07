@@ -111,9 +111,9 @@ class DealController extends Controller
 
     public function getFavoriteProperty(Request $request) {
 
-        $domainName = config('app.favApiDetaiis')['domainName'];
-        $userName   = config('app.favApiDetaiis')['userName'];
-        $password   = config('app.favApiDetaiis')['password'];
+        $domainName = $request->URL;
+        $userName   = $request->USERNAME;
+        $password   = $request->PASSWORD;
 
         //GET AUTHENTICATION TOKEN
         $reqData    = array('email' => $userName, 'password' => $password);
@@ -121,6 +121,11 @@ class DealController extends Controller
         $url        = $domainName."/api/v1/login";
         $response   = $this->callCurlRequest($reqData, 'POST', $header, $url);
 
+        if( empty($response) || (isset($response->status) && $response->status == 'error') ) {
+
+            return response()->json(['status' => 'error', 'data' => array()]);
+        }
+        
         //GET FAVORITE PROPERTY
         $favUrl     = $domainName."/api/v1/getUserFavorites";
         $favHeader  = array("Authorization: Bearer " . $response->access_token, "Content-Type: application/json");
