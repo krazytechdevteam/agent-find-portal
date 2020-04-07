@@ -113,7 +113,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">Profile</div>
-                                <div class="panel-body">
+                                <div class="panel-body" style="height: 324px;">
                                     <h4>Loan Basis</h4>
                                     <?php
 									$profile = json_decode(json_encode($data->PROFILE), true);
@@ -241,7 +241,7 @@
                                                 
                                             </div>
                                         </div>
-                                        <div class="panel-body">
+                                        <div class="panel-body" style="height: 140px;">
                                             <div class="attachment min-height137">
                                                 <div class="attach-filelist">
 													<?php
