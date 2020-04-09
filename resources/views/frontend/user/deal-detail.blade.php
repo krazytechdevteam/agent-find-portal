@@ -318,7 +318,7 @@
                     
                     <div class="row" style="display: block;">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                            
-                            <div class="panel panel-default" id="favprop-sec">
+                            <div class="panel panel-default favPropertyPanel" id="favprop-sec">
                                 <div class="panel-heading"><h4></h4></div>
                                 <div class="panel-body">
                                     <div class="row">
@@ -414,7 +414,8 @@ function getUserFavorites() {
 		success: function (res) {
 			
 			if(res && res.status == "error") {
-				$('.fav-property').html('<div style="text-align: center;font-size: 20px;color: gray; padding: 15px;">Something went wrong on loading favorite property !!!</div>');
+				//$('.fav-property').html('<div style="text-align: center;font-size: 20px;color: gray; padding: 15px;">Something went wrong on loading favorite property !!!</div>');
+				$('.favPropertyPanel').css("display", "none");
 				return;
 			}
 			
@@ -480,11 +481,13 @@ function getUserFavorites() {
 				})
 				$('#fav_list').html(html);
 		    } else {
-				$('.fav-property').html('<div style="text-align: center;font-size: 20px;color: gray; padding: 15px;">No Record Found</div>');
+				//$('.fav-property').html('<div style="text-align: center;font-size: 20px;color: gray; padding: 15px;">No Record Found</div>');
+				$('.favPropertyPanel').css("display", "none");
 			}  
 		},
 		error: function (error) { 
-			$('.fav-property').html('<div style="text-align: center;font-size: 20px;color: gray; padding: 15px;">Something went wrong on loading favorite property !!!</div>');
+			//$('.fav-property').html('<div style="text-align: center;font-size: 20px;color: gray; padding: 15px;">Something went wrong on loading favorite property !!!</div>');
+			$('.favPropertyPanel').css("display", "none");
 		}
 	});
 }
