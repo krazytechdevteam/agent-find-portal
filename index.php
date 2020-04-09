@@ -1,5 +1,5 @@
 <?php
-
+setlocale(LC_MONETARY, 'en_US.UTF-8');
 /**
  * Laravel - A PHP Framework For Web Artisans.
  *

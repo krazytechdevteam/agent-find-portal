@@ -1336,5 +1336,6 @@ span.stars span {
 .min-height-dashboard .table thead tr th {
 
   font-size: 1.2em !important;
-
 }
+
+.deal-table tr:nth-child(even) {background-color: #fff;}

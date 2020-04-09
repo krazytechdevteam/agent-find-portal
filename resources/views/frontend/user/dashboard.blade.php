@@ -9,7 +9,6 @@
 	  color:black !important
   }
   </style>
-  
 
   <input type="hidden" id="deals_active" value="<?php echo isset($data->DEALS_COUNT->ActivelyLooking) ? $data->DEALS_COUNT->ActivelyLooking : 0; ?>" />  
   <input type="hidden" id="deals_closed" value="<?php echo isset($data->DEALS_COUNT->Closed) ? $data->DEALS_COUNT->Closed : 0; ?>" />  
@@ -130,12 +129,11 @@
 	  
 						<table class="table table-condensed deal-table" id="">
 							<thead>
-							  <tr>
-							  <th width="20%">Deal</th>
-							  <th width="15%">Loan Officer</th>
-							  <th width="15%">Assigned Agent</th>
-							  <th width="20%">Timeframe for Purchase</th>
-							</tr>
+							  	<tr>
+								  	<th width="40%">Buyer Name</th>
+								  	<th width="30%">Close Date</th>
+								  	<th width="30%">Purchase Price</th>
+								</tr>
 							</thead>
 							<tbody>
 							  <?php
@@ -148,24 +146,25 @@
 												  <?php echo $r->DEAL_NAME; ?>
 											  </a>
 											</p>
-											<p class="light-text"><?php echo $r->DEAL_EMAIL; ?></p>
-											<p class="light-text"><?php echo $r->DEAL_PHONE; ?></p>
 										</td>
 										
 										<td>
-											<p class="bold-text"><a href="<?php echo url('/') . '/user-profile/' . $r->LO_ID; ?>"><?php echo $r->LO_NAME; ?></a></p>
-											<p class="light-text"><?php echo $r->LO_EMAIL; ?></p>
-											<p class="light-text"><?php echo $r->LO_PHONE; ?></p>
+											<p class="light-text">
+												<?php echo date('Y-m-d', strtotime($r->CLOSE_DATE));?>
+											</p>
 										</td>
+										
+										<td>
+										  	<p class="light-text">
+										  		<?php 
+				                                $purchase_price = 0;
+				                                if(isset($r->PURCHASE_PRICE)) {
 
-										<td>
-											<p class="bold-text"><a href="<?php echo url('/') . '/user-profile/' . $r->AGENT_ID; ?>"><?php echo $r->AGENT_NAME; ?></p>
-											<p class="light-text"><?php echo $r->AGENT_EMAIL; ?></p>
-											<p class="light-text"><?php echo $r->AGENT_PHONE; ?></p>
-									   </td>
-										
-										<td>
-										  <p class="light-text"><?php echo $r->PURCHASE_TIMEFRAME; ?></p>
+				                                  $purchase_price = $r->PURCHASE_PRICE;
+				                                }
+				                                echo money_format('%n', $purchase_price);
+				                                ?>
+									  		</p>
 										</td>
 
 									  </tr>
@@ -200,15 +199,14 @@
 	  
 						<table class="table table-condensed deal-table" id="list_data">
 							<thead>
-							  <tr>
-							  <th width="20%">Deal</th>
-							  <th width="15%">Loan Officer</th>
-							  <th width="15%">Assigned Agent</th>
-							  <th width="20%">Timeframe for Purchase</th>
-							</tr>
+							  	<tr>
+								  <th width="40%">Buyer Name</th>
+								  <th width="60%">Notes</th>
+								</tr>
 							</thead>
 							<tbody>
 							  <?php
+							  	$indx = 1;
 								foreach ($dealsMakingOfferData->DEALS as $k => $r) {
 								?>
 								  <tr>
@@ -218,24 +216,27 @@
 												  <?php echo $r->DEAL_NAME; ?>
 											  </a>
 											</p>
-											<p class="light-text"><?php echo $r->DEAL_EMAIL; ?></p>
-											<p class="light-text"><?php echo $r->DEAL_PHONE; ?></p>
 										</td>
 										
 										<td>
-											<p class="bold-text"><a href="<?php echo url('/') . '/user-profile/' . $r->LO_ID; ?>"><?php echo $r->LO_NAME; ?></a></p>
-											<p class="light-text"><?php echo $r->LO_EMAIL; ?></p>
-											<p class="light-text"><?php echo $r->LO_PHONE; ?></p>
-										</td>
+										  	<p class="light-text">
+										  		<span id="summary_sec_<?php echo $indx; ?>">
+										  		<?php 
+										  		if(strlen($r->NOTES) > 95) {
+										  			
+										  			echo substr($r->NOTES, 0, 95);
 
-										<td>
-											<p class="bold-text"><a href="<?php echo url('/') . '/user-profile/' . $r->AGENT_ID; ?>"><?php echo $r->AGENT_NAME; ?></p>
-											<p class="light-text"><?php echo $r->AGENT_EMAIL; ?></p>
-											<p class="light-text"><?php echo $r->AGENT_PHONE; ?></p>
-									   </td>
-										
-										<td>
-										  <p class="light-text"><?php echo $r->PURCHASE_TIMEFRAME; ?></p>
+										  			echo '&nbsp;<a href="javascript:showSec('.$indx.')" style="font-size: 12px;">More ></a>';
+										  		}
+										  		?>
+										  		</span>
+										  		<span id="complete_sec_<?php echo $indx; ?>" style="display: none;">
+										  			<?php 
+										  			echo $r->NOTES; 
+										  			echo '&nbsp;<a href="javascript:hideSec('.$indx.')" style="font-size: 12px;">< Less</a>';
+										  			?>
+										  		</span>
+									  		</p>
 										</td>
 
 									  </tr>
@@ -397,7 +398,16 @@ series.columns.template.adapter.add("fill", function(fill, target) {
 
 });
 
+function showSec(indx) {
 
+	document.getElementById('summary_sec_'+indx).style.display = 'none';
+	document.getElementById('complete_sec_'+indx).style.display = 'block';
+}
 
+function hideSec(indx) {
+
+	document.getElementById('complete_sec_'+indx).style.display = 'none';
+	document.getElementById('summary_sec_'+indx).style.display = 'block';
+}
 </script>    
 @endpush

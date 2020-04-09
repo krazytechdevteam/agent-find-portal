@@ -121,7 +121,15 @@
 									?>
 										
 										<ul class="list-unstyled profile-list">
-											<li>Pre-approval Amount: <span class="text-value">$<?php echo $data->PROFILE->PREAPPROVAL_AMOUNT ; ?>
+											<li>Pre-approval Amount: <span class="text-value">
+                                                <?php 
+                                                $approval_amt = 0;
+                                                if(isset($data->PROFILE->PREAPPROVAL_AMOUNT)) {
+
+                                                  $approval_amt = $data->PROFILE->PREAPPROVAL_AMOUNT;
+                                                }
+                                                echo money_format('%n', $approval_amt);
+                                                ?>
 												</span></li>
 											<li>Loan Type: <span class="text-value"><?php echo $data->PROFILE->LOAN_TYPE ; ?></span></li>
 											<li>First Time Home Buyer: <span class="text-value"><?php echo $data->PROFILE->FIRST_TIME_HOME_BUYER ; ?></span></li>

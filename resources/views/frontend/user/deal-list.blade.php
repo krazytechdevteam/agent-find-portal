@@ -45,12 +45,14 @@
               <table class="table table-condensed deal-table" id="list_data">
                 <thead>
                   <tr>
-                  <th width="20%">Deal</th>
-                  <th width="15%">Status</th>
-                  <th width="15%">Loan Officer</th>
-                  <th width="15%">Assigned Agent</th>
-                  <th width="20%">Timeframe for Purchase</th>
-                  <th width="15%">Notes</th>
+                  <th width="16%">Deal Name</th>
+                  <th width="12%">Date Deal Received</th>
+                  <th width="12%">Stage</th>
+                  <th width="12%">Status Detail</th>
+                  <th width="12%">Pre-Approved Amount</th>
+                  <th width="12%">Timeframe for buying</th>
+                  <th width="12%">Assigned Agent</th>
+                  <th width="12%">Notes</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -64,37 +66,50 @@
                                       <?php echo $r->DEAL_NAME; ?>
                                   </a>
                                 </p>
-                                <p class="light-text"><?php echo $r->DEAL_EMAIL; ?></p>
-                                <p class="light-text"><?php echo $r->DEAL_PHONE; ?></p>
                             </td>
                             <td>
-                            <?php
-                              if(!empty($r->STATUS)){
-                            ?>
-                                <button class="btn btn-green btn-default"type="button">
-                                  <?php echo $r->STATUS; ?>
-                                </button>
-                            <?php
-                            }
-                            ?>
+                              <p class="light-text">
+                                <?php echo date('Y-m-d H:i:s', strtotime($r->DATE_RECEIVED));?>
+                              </p>
+                            </td>
+
+                            <td>
+                              <p class="light-text">
+                                <?php echo $r->STAGE;?>
+                              </p>
+                            </td>
+
+                            <td>
+                              <p class="light-text">
+                                <?php echo $r->STATUS;?>
+                              </p>
+                            </td>
+
+                            <td>
+                              <p class="light-text">                                
+                                <?php 
+                                $pre_approved_amt = 0;
+                                if(isset($r->PRE_APPROVED_AMT)) {
+
+                                  $pre_approved_amt = $r->PRE_APPROVED_AMT;
+                                }
+                                echo money_format('%n', $pre_approved_amt);
+                                ?>
+                              </p>
+                            </td>
+
+                            <td>
+                              <p class="light-text">
+                                <?php echo $r->PURCHASE_TIMEFRAME; ?>
+                              </p>
+                            </td>
+
+                            <td>
+                                <p class="bold-text">
+                                  <a href="<?php echo url('/') . '/user-profile/' . $r->AGENT_ID; ?>"><?php echo $r->AGENT_NAME; ?></a>
+                                </p>
                             </td>
                            
-                            <td>
-                                <p class="bold-text"><a href="<?php echo url('/') . '/user-profile/' . $r->LO_ID; ?>"><?php echo $r->LO_NAME; ?></a></p>
-                                <p class="light-text"><?php echo $r->LO_EMAIL; ?></p>
-                                <p class="light-text"><?php echo $r->LO_PHONE; ?></p>
-                            </td>
-
-                            <td>
-                                <p class="bold-text"><a href="<?php echo url('/') . '/user-profile/' . $r->AGENT_ID; ?>"><?php echo $r->AGENT_NAME; ?></p>
-                                <p class="light-text"><?php echo $r->AGENT_EMAIL; ?></p>
-                                <p class="light-text"><?php echo $r->AGENT_PHONE; ?></p>
-                           </td>
-                            
-                            <td>
-                              <p class="light-text"><?php echo $r->PURCHASE_TIMEFRAME; ?></p>
-                            </td>
-
                             <td>
                                 <a class="notes_id" data-notes="<?php echo $r->NOTES; ?>" href="javascript:void(0)">View Notes</a>
                             </td>
