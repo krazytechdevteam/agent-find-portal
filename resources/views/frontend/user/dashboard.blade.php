@@ -77,16 +77,10 @@
 
               <h2><div class="gridHeader truncation" title=""># of Deals - Actively Looking</div><div class="gridTitle truncation"></div></h2>
 
-              <!--
-              <div class="text_cont">
-                23
-              </div>
-
-              -->
-
-              <div id="deals_actively_looking"></div> 
+              <div class="deals_actively_looking1">
+				<?php echo isset($data->DEALS_COUNT->ActivelyLooking) ? $data->DEALS_COUNT->ActivelyLooking : 0; ?>
+				</div>
               
-
               <div class="footer_cont">
                 <a href="<?php echo url('/') .'/deal-list?stage=Buyer Actively Looking'; ?>" title="">View Details</a>
               </div>
@@ -104,7 +98,6 @@
               </h2>
 
               <div id="assigned_deals"></div> 
-              <input type="hidden" id="deals_active" value="119" />  
 
               <div class="footer_cont">
                 <a href="<?php echo url('/') .'/deal-list'; ?>" title="">View Details</a>
