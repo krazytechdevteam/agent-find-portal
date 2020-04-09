@@ -24,7 +24,14 @@
             <li class="dropdown list-unstyled">
              <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
               {{ Session::get('AUTH_USER')['NAME'] }}
-              <img src="{{ Session::get('AUTH_USER')['PROFILE_IMG'] }}" alt="" class="profile-image" /></a>
+              <?php
+              $profile_img = '';
+              if(isset(Session::get('AUTH_USER')['PROFILE_IMG'])) {
+
+                $profile_img = Session::get('AUTH_USER')['PROFILE_IMG'];
+              }
+              ?>
+              <img src="{{ $profile_img }}" alt="" class="profile-image" /></a>
               <ul class="dropdown-menu">
                 <li>
                     <a href="<?php echo url('/') . '/user-profile/';?>{{ Session::get('AUTH_USER')['ENROLLMENT_ID'] }}">Profile</a>

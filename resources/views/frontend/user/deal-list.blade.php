@@ -8,9 +8,6 @@
       <div class="row">
         <div class="col-md-12">
           <h3>Deals</h3>
-          <?php
-          if(count($data->DEALS) > 0) {
-          ?>
             <div class="row">
               <div class="col-md-2">
                 <select class="form-control col-md-2" id="filterByStage" name="stages">
@@ -28,11 +25,7 @@
                   <input class="btn btn-green btn-default" id="btnSearch" name="btnSearch" type="button" value="Filter">
               </div>
             </div>
-          <?php
-          } else {
-
-          }
-          ?>
+          
         </div>
       </div>
 
@@ -122,6 +115,14 @@
             </div>
           </div>
         </div>
+      <?php
+      } else {
+      ?>
+         <div class="row">
+            <div class="col-md-12 error">
+              No Deals Found!
+            </div>
+          </div>
       <?php
       }
       ?>

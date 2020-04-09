@@ -1349,3 +1349,8 @@ span.stars span {
   position: absolute;
   top: 25%;
 }
+.error {
+    padding: 15px;
+    text-align: left;
+    color:  red;
+}
