@@ -8,6 +8,10 @@
     
     <div class="container-fluid client-list" style="padding-bottom: 30px;">
         <div class="row">
+			
+			<?php
+			if(isset($data->LO_ID) && !empty($data->LO_ID)) {
+			?>
             <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                  <div class="media">
                     <a class="pull-left" href="<?php echo url('/') . '/user-profile/' . $data->LO_ID; ?>">
@@ -22,6 +26,13 @@
                     </div>
                   </div>
             </div>
+			<?php
+			}
+			?>
+			
+			<?php
+			if(isset($data->BROKER_ID) && !empty($data->BROKER_ID)) {
+			?>
             <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                 <div class="media">
                     <a class="pull-left" href="<?php echo url('/') . '/user-profile/' . $data->BROKER_ID; ?>">
@@ -36,6 +47,13 @@
                     </div>
                   </div>
             </div>
+			<?php
+			}
+			?>
+			
+			<?php
+			if(isset($data->AGENT_ID) && !empty($data->AGENT_ID)) {
+			?>
             <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                 <div class="media">
                     <a class="pull-left" href="<?php echo url('/') . '/user-profile/' . $data->AGENT_ID; ?>"><img src="<?php echo $data->AGENT_IMAGE; ?>" onerror="this.src='{{ asset('public/img/profile-icon.png') }}';this.onerror='';" alt="" class="media-object">
@@ -49,6 +67,9 @@
                     </div>
                   </div>
             </div>
+			<?php
+			}
+			?>
         </div>
     </div>
     
