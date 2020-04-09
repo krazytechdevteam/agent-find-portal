@@ -203,7 +203,7 @@ class DealController extends Controller
         try {
 
             //GET THE CHAT OLD HISTORY
-            $OldChatURL      = 'https://afnew-agentfind.cs97.force.com/AgentFind/services/apexrest/LOChat/'.$dealId;
+            $OldChatURL      = config('app.agentFindApiURL') . 'services/apexrest/LOChat/'.$dealId;
             $client          = new \GuzzleHttp\Client();
             $oldChatResponse = $client->get($OldChatURL);
             $OldChatData     = json_decode($oldChatResponse->getBody());

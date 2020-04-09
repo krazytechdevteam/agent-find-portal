@@ -154,7 +154,7 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
-    'agentFindApiURL' => 'https://afnew-agentfind.cs97.force.com/AgentFind/',
+    'agentFindApiURL' => 'https://agentfind.secure.force.com/AgentFind/',
 
 
     /*
