@@ -448,16 +448,7 @@ function getUserFavorites() {
 						L.marker([d.latitude, d.longitude])
 						.addTo(mymap)
 						.bindPopup('<b>' + d.addressLineOne + "<br>" + d.addressLineTwo + '<br>' + '$' + d.price.formatMoney(2, ".", ",") + '</b>');
-						
-						/* var popup = L.popup();
-						var marker = L.marker([d.latitude, d.longitude], {clickUrl: propertyDetailUrl})
-									.addTo(mymap)
-									.on('mouseover', function(e){
-										popup.setLatLng(e.latlng).setContent(d.addressLineOne + "<br>" + d.addressLineTwo + '<br>' + d.price).openOn(mymap);
-									})
-									.on('mouseout', function(e){
-										mymap.closePopup()
-									}) */
+			
 					}
 			
 												
@@ -663,21 +654,6 @@ $(".chat_send_btn").click(function(e) {
 		    if(res.status == 'success') {
 			   
 			    loadTodayChatHistory();
-			    /* var senderImage = "{{ Session::get('AUTH_USER')['PROFILE_IMG'] }}";
-				var newMsgHtml = '<div class="ng-scope">'+ 
-								   '<div class="outgoing_msg ng-scope">'+
-										'<div class="sent_msg">'+
-											'<p class="ng-binding">'+enterMsg+'</p>'+
-											'<span class="time_date ng-binding"></span>'+
-										'</div>'+
-										'<div class="outgoing_msg_img">'+ 
-											'<img src="'+senderImage+'">'+
-										'</div>'+
-									'</div>'+
-								'</div>';
-						
-				$('.today_chat').append(newMsgHtml); */
-		    
 			} else {
 				
 				swal("Error", "Something Went Wrong.Plz Try Agin !!!", "error");
