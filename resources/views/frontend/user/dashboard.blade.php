@@ -169,8 +169,7 @@
 					<?php
 					} else {
 					?>
-						<span style="padding: 200px;font-size: 15px;font-weight: bold;color: #0e52fd;">No Records Found</span>
-					
+						<span style="color: #0e52fd;">No Deals Found!</span>
 					<?php	
 					}
 					?>
@@ -241,7 +240,7 @@
 					<?php
 					} else {
 					?>
-						<span style="padding: 200px;font-size: 15px;font-weight: bold;color: #0e52fd;">No Records Found</span>
+						<span style="color: #0e52fd;">No Deals Found!</span>
 					
 					<?php	
 					}
